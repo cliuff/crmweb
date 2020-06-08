@@ -19,7 +19,7 @@ layui.use(['table','jquery'], function(){
   //第一个实例
   table.render({
     elem: '#tabCustomer'
-    ,height: 'full-150'
+    ,height: 'full-250'
     ,url: 'http://localhost:8080/customer/customers' //数据接口
     ,page: true //开启分页
 	,toolbar:'#barCustomer'  //添加编辑工具栏按钮
@@ -28,20 +28,20 @@ layui.use(['table','jquery'], function(){
 	,limit:5
     ,cols: [[ //表头
 		{checkbox:true}
-      ,{field: 'cusNo', title: '客户编号', width:270}
-      ,{field: 'cusName', title: '客户名称', width:270}
-      ,{field: 'cusRegion', title: '客户区域', width:270}
-      ,{field: 'cusAddr', title: '客户地址', width:270}
-	  ,{field: 'cusUrl', title: '客户网站', width:270}
-	  ,{field: 'cusLevel', title: '客户等级', width:270}
-	  ,{field:'cusSatisfied',title:'客户满意度',width:270}
-	  ,{field: 'cusCredit', title: '信用等级',templet:function(item){
+      ,{field: 'cusNo', title: '客户编号', width:150}
+      ,{field: 'cusName', title: '客户名称', width:150}
+      ,{field: 'cusRegion', title: '客户区域', width:150}
+      ,{field: 'cusAddr', title: '客户地址', width:170}
+	  ,{field: 'cusUrl', title: '客户网站', width:220}
+	  ,{field: 'cusLevel', title: '客户等级', width:180}
+	  ,{field:'cusSatisfied',title:'客户满意度',width:180}
+	  ,{field: 'cusCredit', title: '信用等级'/*,templet:function(item){
 		  if(item.cusCredit=='一级'){
 			  return '一等'
 		  }else{
 			  return item.cusCredit
 		  }
-	  }}
+	  }*/}
     ]]
   });
   
@@ -53,7 +53,7 @@ layui.use(['table','jquery'], function(){
          layer.open({
         	          type: 2 //此处以iframe举例
         	          ,title: '新增客户信息'
-        	          ,area: ['400px', '500px']
+        	          ,area: ['400px', '540px']
         	          ,shade: 0.5//阴影（0-1之间的数）
         	          ,maxmin: true//最大、最小化按钮
         	          ,offset: [ //为了演示，随机坐标
@@ -100,7 +100,7 @@ layui.use(['table','jquery'], function(){
          layer.open({
                 type: 2 //此处以iframe举例
                 ,title: '修改客户信息'
-                ,area: ['390px', '450px']
+                ,area: ['390px', '480px']
                 ,shade: 0.5 //背景阴影0~1
                 ,maxmin: true  //最大，最小化按钮
                 ,offset: [ //为了演示，随机坐标
