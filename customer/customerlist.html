@@ -28,19 +28,20 @@ layui.use(['table','jquery'], function(){
 	,limit:5
     ,cols: [[ //表头
 		{checkbox:true}
-      ,{field: 'cusNo', title: '客户编号', width:100}
-      ,{field: 'cusName', title: '客户名称'}
-      ,{field: 'cusRegion', title: '客户区域', width:101}
-      ,{field: 'cusAddr', title: '客户地址', width:100} ,
-	  ,{field: 'cusUrl', title: '客户网站', width:100} ,
-	  ,{field: 'cusLevel', title: '客户等级', width:100} ,
+      ,{field: 'cusNo', title: '客户编号', width:270}
+      ,{field: 'cusName', title: '客户名称', width:270}
+      ,{field: 'cusRegion', title: '客户区域', width:270}
+      ,{field: 'cusAddr', title: '客户地址', width:270}
+	  ,{field: 'cusUrl', title: '客户网站', width:270}
+	  ,{field: 'cusLevel', title: '客户等级', width:270}
+	  ,{field:'cusSatisfied',title:'客户满意度',width:270}
 	  ,{field: 'cusCredit', title: '信用等级',templet:function(item){
 		  if(item.cusCredit=='一级'){
 			  return '一等'
 		  }else{
 			  return item.cusCredit
 		  }
-	  }, width:100} 
+	  }}
     ]]
   });
   
