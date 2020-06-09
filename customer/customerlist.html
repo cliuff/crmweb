@@ -39,6 +39,7 @@ layui.use(['table','jquery'], function(){
     ,height: 'full-250'
     ,url: 'http://localhost:8080/customer/customers' //数据接口
     ,page: true //开启分页
+	,method: "POST"
 	,toolbar:'#barCustomer'  //添加编辑工具栏按钮
 	,defaultToolbar:[] //去掉默认的工具栏按钮
 	,limits:[5,10,15,20]
