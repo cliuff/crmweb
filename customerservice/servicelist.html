@@ -6,7 +6,7 @@
   <a class="layui-btn layui-btn-xs" lay-event="add">新增</a>
   <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
   <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-  <input type="text" id="cusName" autocomplete="off" placeholder="请输入客户姓名查询" style="margin-left: 200px;">
+  <input type="text" id="serviceType" autocomplete="off" placeholder="请输入服务类型查询" style="margin-left: 200px;">
   <a class="layui-btn  layui-btn-xs" lay-event="search">搜索</a>
 </script>
 <script>
@@ -154,7 +154,7 @@ layui.use(['table','jquery'], function(){
 	  case 'search':
 		table.reload('tabService',{
 			where:{
-				cusName:$("#cusName").val()
+				serviceType:$("#serviceType").val()
 			},
 			page:{
 				curr:1
