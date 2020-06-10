@@ -30,7 +30,7 @@
                 {checkbox:true}
                 ,{field: 'orderNo', title: '订单编号', width:150}
                 ,{field: 'orderCustomerNo', title: '客户编号', width:150}
-                ,{field: 'orderSalesNo', title: '销售员编号', width:150}
+                ,{field: 'orderSalesmanNo', title: '销售员编号', width:150}
                 ,{field: 'orderAmount', title: '销售金额', width:170}
                 ,{field: 'orderTime', title: '销售时间', width:220}
 
@@ -45,7 +45,7 @@
                     layer.open({
                         type: 2 //此处以iframe举例
                         ,title: '新增订单信息'
-                        ,area: ['400px', '440px']
+                        ,area: ['400px', '480px']
                         ,shade: 0.5//阴影（0-1之间的数）
                         ,maxmin: true//最大、最小化按钮
                         ,offset: [ //为了演示，随机坐标
@@ -63,11 +63,11 @@
                     layer.confirm('确认要删除选中的这条信息吗？', function(index){
                         var ids = []
                         for(var i=0; i<checkStatus.data.length; i++){
-                            ids.push(checkStatus.data[i].cusNo)
+                            ids.push(checkStatus.data[i].orderNo)
                         }
 
                         $.ajax({
-                            url:'http://localhost:8080/customer/delCustomer',
+                            url:'http://localhost:8080/sales/delSales',
                             type:'POST',
                             dataType:'JSON',
                             data:{
@@ -85,13 +85,13 @@
                     break;
                 case 'edit':
                     if(checkStatus.data.length<=0){
-                        layer.alert("请选择要修改的行");
+                        layer.alert("请选择要修改的订单");
                         return;
                     }
                     row = checkStatus.data[0]
                     layer.open({
                         type: 2 //此处以iframe举例
-                        ,title: '修改客户信息'
+                        ,title: '修改订单信息'
                         ,area: ['390px', '480px']
                         ,shade: 0.5 //背景阴影0~1
                         ,maxmin: true  //最大，最小化按钮
@@ -99,7 +99,7 @@
                             ($(window).height()-450)/2
                             ,($(window).width()-390)/2
                         ]
-                        ,content: 'customer/customerupdate.html'
+                        ,content: 'sales/salesupdate.html'
                         // ,zIndex: layer.zIndex //重点1
                         // ,success: function(layero){
                         //   layer.setTop(layero); //重点2

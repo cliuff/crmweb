@@ -25,8 +25,15 @@
         <div class="layui-inline">
             <label class="layui-form-label">销售员编号</label>
             <div class="layui-input-block">
-                <input type="text" name="orderSalesNo" lay-verify="required" autocomplete="off" placeholder="请输入销售员编号"
-                       class="layui-input">
+                <select name="orderSalesmanNo" lay-verify="required">
+                    <option value="">请选择</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                </select>
             </div>
         </div>
         <div class="layui-inline">
@@ -39,7 +46,7 @@
         <div class="layui-inline">
             <label class="layui-form-label">销售时间</label>
             <div class="layui-input-inline">
-                <input type="text" class="layui-input" id="test5" placeholder="yyyy-MM-dd HH:mm:ss">
+                <input type="text" class="layui-input" autocomplete="off" id="test5" placeholder="yyyy-MM-dd">
             </div>
         </div>
     </div>
@@ -60,14 +67,14 @@
         var form = layui.form
         var $ = layui.jquery
         var laydate = layui.laydate
+        form.render()
         laydate.render({
             elem: '#test5'
         });
-        form.render()
         form.on('submit(btnSubmitAddSales)', function(data){
             if(form.verify()){
                 $.ajax({
-                    url:'http://localhost:8080/customer/addCustomer',
+                    url:'http://localhost:8080/sales/addSales',
                     type:'POST',
                     dataType:'JSON',
                     data:data.field,
@@ -75,13 +82,13 @@
                         debugger;
                         var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
                         parent.layer.close(index); //再执行关闭
-                        parent.table.reload('tabCustomer');
+                        parent.table.reload('tabSales');
                     }
                 })
                 return false;
             }
-
         });
+
 
 
     })
