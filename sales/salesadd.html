@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../layui/css/layui.css"/>
+</head>
+<body style="padding: 10px;">
+<div class="layui-form" lay-filter='formAddSales' action="">
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">订单编号</label>
+            <div class="layui-input-block">
+                <input type="text" name="orderNo" lay-verify="required" autocomplete="off" placeholder="请输入订单编号"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">客户编号</label>
+            <div class="layui-input-block">
+                <input type="text" name="orderCustomerNo" lay-verify="required" autocomplete="off" placeholder="请输入客户编号"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">销售员编号</label>
+            <div class="layui-input-block">
+                <input type="text" name="orderSalesNo" lay-verify="required" autocomplete="off" placeholder="请输入销售员编号"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">订单金额</label>
+            <div class="layui-input-block">
+                <input type="text" name="orderAmount" lay-verify="required" autocomplete="off" placeholder="请输入订单金额"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">销售时间</label>
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input" id="test5" placeholder="yyyy-MM-dd HH:mm:ss">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="layui-form-item" style="margin-right: 3px ">
+        <div class="layui-input-block">
+            <button type="submit" class="layui-btn" lay-submit="" lay-filter="btnSubmitAddSales">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</div>
+
+<script src="../layui/layui.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+
+    layui.use(['form','jquery','laydate'],function(){
+        var form = layui.form
+        var $ = layui.jquery
+        var laydate = layui.laydate
+        laydate.render({
+            elem: '#test5'
+        });
+        form.render()
+        form.on('submit(btnSubmitAddSales)', function(data){
+            if(form.verify()){
+                $.ajax({
+                    url:'http://localhost:8080/customer/addCustomer',
+                    type:'POST',
+                    dataType:'JSON',
+                    data:data.field,
+                    success:function(obj){
+                        debugger;
+                        var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                        parent.layer.close(index); //再执行关闭
+                        parent.table.reload('tabCustomer');
+                    }
+                })
+                return false;
+            }
+
+        });
+
+
+    })
+</script>
+</body>
+</html>
