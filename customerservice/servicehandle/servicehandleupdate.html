@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../layui/css/layui.css"/>
+	</head>
+	<body style="padding: 20px;">
+		<form class="layui-form" lay-filter='formUpdateServiceHandle' action="">
+		  <input type="hidden" name="id"  />
+		  <input type="hidden" name="serviceStatus"  />
+		  <input type="hidden" name="allocator"  />
+		  <div class="layui-form-item">
+		     <label class="layui-form-label">处理人</label>
+		     <div class="layui-input-block">
+		       <select name="handler" lay-verify="required">
+				  <option value="">请选择处理人</option>
+				  <option value="华北">华北</option>
+				  <option value="西北">西北</option>
+				  <option value="华中">华中</option>
+				  <option value="华南">华南</option>
+				  <option value="西南">西南</option>
+		  	   </select>
+		     </div>
+		   </div>
+		   
+		  <div style="margin-top: 50px;" class="layui-form-item">
+			  <div class="layui-input-block">
+				<button type="submit" class="layui-btn" lay-submit="" lay-filter="btnSubmitUpdateServiceHandle">立即提交</button>
+				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+			  </div>
+			</div>
+		  </form>
+		  
+	<script src="../../layui/layui.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		layui.use(['form','jquery'],function(){
+			var form = layui.form
+			var $ = layui.jquery
+			
+			form.render()
+			form.val('formUpdateServiceHandle',{
+				"id":parent.row.id,
+				"customerId":parent.row.customerId,
+				"serviceContent":parent.row.serviceContent,
+				"serviceType":parent.row.serviceType,
+				"serviceStatus":'已分配',
+				"builder":parent.row.builder,
+				"createTime":parent.row.createTime,
+				"allocator":'当前登录用户',
+				"allocateTime":parent.row.allocateTime,
+				"handleMethod":parent.row.handleMethod,
+				"handler":parent.row.handler,
+				"handleTime":parent.row.handleTime,
+				"handleResult":parent.row.handleResult,
+				"satisfaction":parent.row.satisfaction
+			})
+			
+			form.on('submit(btnSubmitUpdateServiceHandle)', function(data){
+				console.log(data)
+			    if(form.verify()){
+					$.ajax({
+						url:'http://localhost:8080/service/updateServiceHandle',
+						type:'POST',
+						dataType:'JSON',
+						data:data.field,
+						success:function(obj){
+							var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+							parent.layer.close(index); //再执行关闭   
+							parent.table.reload('tabServiceHandle');
+						}
+					})
+					return false;
+				}
+				
+			});
+
+			
+			
+		})
+	</script>
+	</body>
+</html>

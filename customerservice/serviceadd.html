@@ -7,6 +7,7 @@
 	</head>
 	<body style="padding: 20px;">
 		<form class="layui-form" lay-filter='formAddService' action="" >
+			<input type="hidden" name="builder"  />
 		  <div class="layui-form-item">
 		     <label class="layui-form-label">客户</label>
 		     <div class="layui-input-block">
@@ -52,10 +53,14 @@
 			var form = layui.form
 			var $ = layui.jquery
 			form.render()
+			form.val('formAddService',{
+				"builder":'洱海'
+			})
+			
 			form.on('submit(btnSubmitAddService)', function(data){
 			    if(form.verify()){
 					$.ajax({
-						url:'http://localhost:8080/customer/addService',
+						url:'http://localhost:8080/service/addService',
 						type:'POST',
 						dataType:'JSON',
 						data:data.field,
