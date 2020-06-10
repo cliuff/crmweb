@@ -11,10 +11,9 @@
         const table = layui.table;
         const header = [[ //表头
             {checkbox: true},
-            {field: "index", title: "序号", width: 80}
+            {field: "index", title: "序号", type: "numbers", width: 80}
             , {field: 'cusNo', title: '客户编号', width: 150}
-            , {field: 'cusName', title: '客户名称'}
-            , {field: 'cusRegion', title: '客户区域', width: 150},
+            , {field: 'cusName', title: '客户名称'},
             {field: "transactionAmount", title: "交易总额", width: 150}
         ]];
         table.render({
