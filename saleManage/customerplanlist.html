@@ -41,8 +41,8 @@
             ,page: true //开启分页
             ,method: "POST"
             ,where:{
-            saleChanceState:'未分配'
-        }
+                saleChanceState:'未分配'
+            }
             ,toolbar:'#barSaleChance'  //添加编辑工具栏按钮
             ,defaultToolbar:[] //去掉默认的工具栏按钮
             ,limits:[5,10,15,20]
@@ -61,13 +61,13 @@
                 ,{field: 'createTime', title: '创建时间',align:'center',width: 120}
                 ,{field: 'saleChanceState', title: '状态为',align:'center',width: 90}
 
-               /*,templet:function(item){
-		  if(item.cusCredit=='一级'){
-			  return '一等'
-		  }else{
-			  return item.cusCredit
-		  }
-	  }*/
+                /*,templet:function(item){
+           if(item.cusCredit=='一级'){
+               return '一等'
+           }else{
+               return item.cusCredit
+           }
+       }*/
             ]]
         });
 
@@ -140,7 +140,7 @@
                         //   layer.setTop(layero); //重点2
                         // }
 
-                        });
+                    });
                     break;
                 case 'assign':
                     if(checkStatus.data.length<=0){
@@ -182,7 +182,7 @@
         });
 
         table.on('rowDouble(tabSaleChance)', function(obj){
-             data = obj.data;
+            data = obj.data;
             //标注选中样式
             layer.open({
                 type: 2 //此处以iframe举例
