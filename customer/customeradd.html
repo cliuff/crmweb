@@ -7,12 +7,14 @@
 	</head>
 	<body style="padding: 10px;">
 		<form class="layui-form" lay-filter='formAddCustomer' action="" >
-		  <div class="layui-form-item">
+
+		  <!--<div class="layui-form-item">
 		    <label class="layui-form-label">客户编号</label>
 		    <div class="layui-input-block">
 		      <input type="text" name="cusNo" lay-verify="required" autocomplete="off" placeholder="请输入客户编号" class="layui-input">
 		    </div>
-		  </div>
+		  </div>-->
+
 		  <div class="layui-form-item">
 		    <label class="layui-form-label">客户名称</label>
 		    <div class="layui-input-block">
@@ -64,11 +66,11 @@
 		  			      <div class="layui-input-block">
 		  			        <select name="cusCredit" lay-verify="required">
 		  			          <option value=""></option>
-		  			          <option value="一级">一级</option>
-		  			          <option value="二级">二级</option>
-		  			          <option value="三级">三级</option>
-		  			  		<option value="四级">四级</option>
-		  					<option value="五级">五级</option>
+		  			          <option value="1">一级</option>
+		  			          <option value="2">二级</option>
+		  			          <option value="3">三级</option>
+		  			  		<option value="4">四级</option>
+		  					<option value="5">五级</option>
 		  			        </select>
 		  			      </div>
 		  			    </div>
@@ -78,11 +80,11 @@
 				<div class="layui-input-block">
 					<select name="cusSatisfied" lay-verify="required">
 						<option value=""></option>
-						<option value="非常满意">非常满意</option>
-						<option value="较满意">较满意</option>
-						<option value="满意">满意</option>
-						<option value="较不满意">较不满意</option>
-						<option value="不满意">不满意</option>
+						<option value="1">非常不满意</option>
+						<option value="2">不满意</option>
+						<option value="3">满意</option>
+						<option value="4">较满意</option>
+						<option value="5">非常满意</option>
 					</select>
 				</div>
 			</div>

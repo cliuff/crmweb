@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>layout 后台大布局 - Layui</title>
   <link rel="stylesheet" href="layui/css/layui.css">
   <!--JQuery-->
-  <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
   <!--Google Charts-->
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
@@ -32,6 +32,7 @@
       <li class="layui-nav-item">
         <a href="javascript:;">
           <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+
           贤心
         </a>
         <dl class="layui-nav-child">
@@ -47,13 +48,12 @@
     <div class="layui-side-scroll">
       <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
       <ul class="layui-nav layui-nav-tree"  lay-filter="test">
-        <li class="layui-nav-item">
+        <li class="layui-nav-item layui-nav-itemed">
           <a class="" href="javascript:;">客户管理</a>
           <dl class="layui-nav-child">
             <dd><a class="crm-menu" crmurl="customer/customerlist.html" href="javascript:;">客户信息</a></dd>
-            <dd><a class="crm-menu" crmurl="customer/contact/customercontact.html" href="javascript:;">客户联系人</a></dd>
-            <dd><a class="crm-menu" crmurl="customer/record/customerrecord.html" href="javascript:;">客户交往记录</a></dd>
-            <dd><a class="crm-menu" crmurl="customer/flowmanage/customerflowmanage.html" href="javascript:;">客户流失管理</a></dd>
+            <dd><a class="crm-menu" crmurl="customer/customerrecord.html" href="javascript:;">客户交往记录</a></dd>
+            <dd><a class="crm-menu" crmurl="customer/customerflow.html" href="javascript:;">客户流失管理</a></dd>
           </dl>
         </li>
         <li class="layui-nav-item">
@@ -63,20 +63,17 @@
             <dd><a href="javascript:;">发展客户</a></dd>
           </dl>
         </li>
-		<li class="layui-nav-item">
+		<li class="layui-nav-item layui-nav-itemed">
 		  <a class="" href="javascript:;">客户服务管理</a>
 		  <dl class="layui-nav-child">
 		    <dd><a class="crm-menu" crmurl="customerservice/servicelist.html" href="javascript:;">客户服务信息</a></dd>
-		    <dd><a class="crm-menu" crmurl="customerservice/serviceallocate/serviceallocate.html" href="javascript:;">服务分配</a></dd>
-		    <dd><a class="crm-menu" crmurl="customerservice/servicehandle/servicehandle.html" href="javascript:;">服务处理</a></dd>
-		    <dd><a class="crm-menu" crmurl="customerservice/servicefeedback/servicefeedback.html" href="javascript:;">服务反馈</a></dd>
-			<dd><a class="crm-menu" crmurl="customerservice/servicesave/servicesave.html" href="javascript:;">查看归档服务</a></dd>
+		    <dd><a class="crm-menu" crmurl="customerservice/serviceallocate.html" href="javascript:;">服务分配</a></dd>
+		    <dd><a class="crm-menu" crmurl="customerservice/servicefeedback.html" href="javascript:;">服务反馈</a></dd>
+			<dd><a class="crm-menu" crmurl="customerservice/servicesave.html" href="javascript:;">查看归档服务</a></dd>
 		  </dl>
 		</li>
-        <li class="layui-nav-item layui-nav-itemed">
-          <a class="crm-menu" crmurl="sales/saleslist.html" href="javascript:;">订单管理</a>
-        </li>
-       <li class="layui-nav-item">
+        <li class="layui-nav-item layui-nav-itemed"><a class="crm-menu" crmurl="customerservice/servicelist.html" href="javascript:;">客户服务</a></li>
+        <li class="layui-nav-item">
           <a class="" href="javascript:;">统计报表</a>
           <dl class="layui-nav-child">
             <dd><a class="crm-menu" crmurl="stats/sales.html" href="javascript:;">销售统计</a></dd>
@@ -117,4 +114,4 @@ layui.use(['element','jquery'], function(){
 });
 </script>
 </body>
-</html>*****************************
+</html>

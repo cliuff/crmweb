@@ -10,7 +10,7 @@
 
 <div class="layui-row">
     <!--展示联系人表格-->
-    <div class="layui-col-md7"  >
+    <div class="layui-col-md7" style="margin-left: 20px" >
         <table id="tabContact" lay-filter="tabContact">
         </table>
     </div>
@@ -20,9 +20,9 @@
         &nbsp;
     </div>-->
     <!--联系人操作-->
-    <div class="layui-col-md4" id="formDiv"  style="border: 1px  solid #F2F2F2;margin-left: 40px;margin-top: 10px;visibility: hidden" >
+    <div class="layui-col-md4" id="formDiv"  style="border: 1px  solid #F2F2F2;margin-left: 20px;margin-top: 10px;visibility: hidden;vertical-align: center;height:408px ;"  >
         <div style="margin-top: 11px"></div>
-        <form class="layui-form" lay-filter='formContact' id="formContact" style="margin-left: 2px;width: 450px">
+        <form class="layui-form" lay-filter='formContact' id="formContact" style="margin-left: 2px;width: 380px;">
            <!-- <input type="hidden" name="ctId"  />-->
             <div id="ctlabel"  hidden="hidden" style="text-align: center;margin-bottom: 5px">修改客户联系人</div>
             <div class="layui-form-item" hidden="hidden" id="ctIdDiv">
@@ -82,7 +82,7 @@
     <a class="layui-btn layui-btn-xs" lay-event="add">新增</a>
     <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-    <input type="text" id="ctName" autocomplete="off" placeholder="请输入联系人姓名查询" style="margin-left: 200px;">
+    <input type="text" id="ctName" autocomplete="off" placeholder="请输入联系人姓名查询" style="margin-left: 200px;height:23px">
     <a class="layui-btn  layui-btn-xs" lay-event="search">搜索</a>
 </script>
 <script>

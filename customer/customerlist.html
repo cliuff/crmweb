@@ -8,7 +8,7 @@
   <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
   <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
   <a class="layui-btn layui-btn-xs" lay-event="searchContact" crmurl="customer/contact/customercontact.html">显示联系人</a>
-	  <input type="text" id="cusName" autocomplete="off" placeholder="请输入客户姓名查询" style="margin-left: 200px;">
+	  <input type="text" id="cusName" autocomplete="off" placeholder="请输入客户姓名查询" style="margin-left: 200px;height:23px">
 	  <a class="layui-btn  layui-btn-xs" lay-event="search">搜索</a>
 </script>
 
@@ -38,14 +38,50 @@ layui.use(['table','jquery'], function(){
       ,{field: 'cusAddr', title: '客户地址', width:170}
 	  ,{field: 'cusUrl', title: '客户网站', width:220}
 	  ,{field: 'cusLevel', title: '客户等级', width:180}
-	  ,{field:'cusSatisfied',title:'客户满意度',width:180}
-	  ,{field: 'cusCredit', title: '信用等级'/*,templet:function(item){
-		  if(item.cusCredit=='一级'){
-			  return '一等'
-		  }else{
-			  return item.cusCredit
+	  ,{field:'cusSatisfied',title:'客户满意度',templet:function (item) {
+                  if(item.cusSatisfied=='1')
+                  {
+                      return '非常不满意'
+                  }
+                  else if(item.cusSatisfied=='2')
+                  {
+                      return '不满意'
+                  }
+                  else if(item.cusSatisfied=='3')
+                  {
+                      return '满意'
+                  }
+                  else if(item.cusSatisfied=='4')
+                  {
+                      return '较满意'
+                  }
+                  else if(item.cusSatisfied=='5')
+                  {
+                      return '非常满意'
+                  }
+              }
+              ,width:180}
+	  ,{field: 'cusCredit', title: '信用等级',templet:function(item){
+		  if(item.cusCredit=='1'){
+			  return '一级'
 		  }
-	  }*/}
+		  else if(item.cusCredit=='2')
+		      {
+			  return '二级'
+		  }
+          else if(item.cusCredit=='3')
+          {
+              return '三级'
+          }
+          else if(item.cusCredit=='4')
+          {
+              return '四级'
+          }
+          else if(item.cusCredit=='5')
+          {
+              return '五级'
+          }
+	  }}
     ]]
   });
 
@@ -140,12 +176,12 @@ layui.use(['table','jquery'], function(){
                     layer.open({
                         type: 2 //此处以iframe举例
                         ,title: '客户联系人'
-                        ,area: ['1400px', '500px']
+                        ,area: ['1300px', '500px']
                         ,shade: 0.5 //背景阴影0~1
                         ,maxmin: true  //最大，最小化按钮
                         ,offset: [ //为了演示，随机坐标
                             ($(window).height()-500)/2
-                            ,($(window).width()-1300)/2
+                            ,($(window).width()-1100)/2
                         ]
                         ,content: 'customer/customercontact.html'
 
