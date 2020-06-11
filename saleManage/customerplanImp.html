@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../layui/css/layui.css"/>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body style="padding: 10px;">
+
+<div class="layui-row layui-col-space15">
+    <div class="layui-col-lg6"  style="height: 600px">
+        <table id="tabCustomerPlan" lay-filter="tabCustomerPlan">
+        </table>
+    </div>
+</div>
+
+<script type="text/html" id="barOperate">
+   {{#  if(d.result != '已完成'){ }}
+    <button type="button" class="layui-btn layui-btn-sm layui-btn-normal" lay-event="change">已完成</button>
+  {{#  } }}
+   {{#  if(d.result == '已完成'){ }}
+   <button type="button" class="layui-btn layui-btn-sm layui-btn-disabled" lay-event="change">已完成</button>
+   {{#  } }}
+
+  </script>
+
+
+<script src="../layui/layui.js" type="text/javascript" charset="utf-8"></script>
+
+
+<script>
+    var row = null
+    var table = null
+    var data =null
+    var layer = null
+    layui.use(['table','jquery'], function(){
+        table = layui.table;
+        var $ = layui.jquery;
+        layer = layui.layer
+
+        //第一个实例
+        table.render({
+            elem: '#tabCustomerPlan'
+            ,height: 'full-50'
+            ,url: 'http://localhost:8080/customerPlan/customerPlans' //数据接口
+            ,page: true //开启分页
+            ,method: "POST"
+            ,defaultToolbar:[] //去掉默认的工具栏按钮
+            ,limits:[5,10,15,20]
+            ,limit:5
+            ,cols: [[ //表头
+                {checkbox:true}
+                ,{field: 'cusPlanId', title: '开发计划编号',align:'center',width: 120}
+                ,{field: 'context', title: '计划内容',align:'center'}
+                ,{field: 'time', title: '执行时间',align:'center',width: 120}
+                ,{field: 'userName', title: '执行人',align:'center',width: 120}
+                ,{field:'caozuo',title: '操作栏',align: 'center',width:90,toolbar:'#barOperate'}
+
+                /*,templet:function(item){
+           if(item.cusCredit=='一级'){
+               return '一等'
+           }else{
+               return item.cusCredit
+           }
+       }*/
+            ]]
+        });
+
+        //监听事件
+        table.on('toolbar(tabCustomerPlan)', function(obj){
+            var checkStatus = table.checkStatus(obj.config.id);
+            data = checkStatus.data[0]
+            switch(obj.event){
+                case 'create':
+                    layer.open({
+                        type: 2 //此处以iframe举例
+                        ,title: '新增计划信息'
+                        ,area: ['600px', '500px']
+                        ,shade: 0.5//阴影（0-1之间的数）
+                        ,maxmin: true//最大、最小化按钮
+                        ,offset: [ //为了演示，随机坐标
+                            ($(window).height()-520)/2
+                            ,($(window).width()-600)/2
+                        ]
+                        ,content: 'addcustomerplan.html'
+                    });
+                    break;
+            };
+        });
+
+        //监听工具条
+        table.on('tool(tabCustomerPlan)', function(obj){
+            row = obj.data; //获得当前行数据
+            var layEvent = obj.event; //获得 lay-event 对应的值
+            if(layEvent === 'change'){ //查看
+                $(this).addClass('layui-btn-disabled');
+            }
+            $.ajax({
+                url:'http://localhost:8080/customerPlan/updateCustomerPlan',
+                type:'POST',
+                dataType:'JSON',
+                data: {
+                    cusPlanId:row.cusPlanId,
+                    result:'已完成'
+                },
+                success:function(obj){
+
+                    var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                    parent.layer.close(index); //再执行关闭
+                    parent.table.reload('tabCustomerPlan');
+                    parent.myalert('修改成功啦');
+                }
+            });
+
+        });
+
+    });
+    function myalert(msg){
+        layer.msg(msg, {icon:6})
+    }
+</script>
+
+
+
+</body>
+</html>
+
+
+
