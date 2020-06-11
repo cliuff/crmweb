@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../layui/css/layui.css"/>
+	</head>
+	<body style="padding: 10px;">
+		<form class="layui-form" lay-filter='addPermission' style="width: 90%;">
+			<input type="hidden" name="id"/>
+			
+			<div class="layui-form-item">
+			  <label class="layui-form-label">权限名称:</label>
+			  <div class="layui-input-block">
+				<input type="text" name="permission" lay-verify="required" autocomplete="off" class="layui-input">
+			  </div>
+			</div>
+			<div class="layui-form-item">
+			  <label class="layui-form-label">资源路径:</label>
+			  <div class="layui-input-block">
+				<input type="text" name="url" lay-verify="required" autocomplete="off" class="layui-input">
+			  </div>
+			</div>
+  
+			<!-- 资源分类没写 -->
+		  <div class="layui-form-item layui-form-text">
+			  <label class="layui-form-label">描述：</label>
+			  <div class="layui-input-block">
+				  <textarea name="description" placeholder="请输入内容" class="layui-textarea"></textarea>
+			  </div>
+		  </div>
+		  <div class="layui-form-item" style="margin-top: 40px;">
+			  <div class="layui-input-block">
+				  <button type="submit" class="layui-btn" lay-submit="" lay-filter="btnSubmitAddPermission">提交</button>
+				  <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+			  </div>
+		  </div>
+	  </form>
+		  
+	<script src="../layui/layui.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		layui.use(['form','jquery'],function(){
+			var form = layui.form
+			var $ = layui.jquery
+			form.render()
+         
+            // 提交
+			form.on('submit(btnSubmitAddPermission)', function(data){
+                // 验证
+			    if(form.verify()){
+					$.ajax({
+						url:'http://localhost:8080/permission/add',
+						type:'POST',
+						dataType:'JSON',
+						data:data.field,
+						success:function(obj){
+							let index = parent.layer.getFrameIndex(window.name); 
+							parent.layer.close(index); 
+                            parent.layer.msg("新增成功",{time:1000});
+							parent.table.reload('tabPermission');
+						}
+
+					})
+                    // 防止表单跳转
+					return false;
+				}
+				
+			});		
+			
+		})
+	</script>
+	</body>
+</html>
+

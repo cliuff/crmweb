@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="../layui/css/layui.css" />
+</head>
+
+<body style="padding: 10px;">
+	<form class="layui-form" lay-filter='updateMenu' style="width: 90%;">
+		<!-- 隐藏域 -->
+		<input type="hidden" name="id" />
+
+		<div class="layui-form-item">
+			<label class="layui-form-label">菜单名称:</label>
+			<div class="layui-input-block">
+				<input type="text" name="name" lay-verify="required" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		<!-- 隐藏域 -->
+		<input type="hidden" name="stage" />
+
+		<div class="layui-form-item">
+			<label class="layui-form-label">上级菜单:</label>
+			<div class="layui-input-block">
+				<select name="parent" lay-verify="required" id="parentMenu">
+					<option value=""></option>
+					<option value="0">无上级菜单</option>
+				</select>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">图标:</label>
+			<div class="layui-input-block">
+				<input type="text" name="icon" lay-verify="required" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">是否显示：</label>
+			<div class="layui-input-block">
+				<input type="radio" name="isDisplay" value="1" title="是">
+				<input type="radio" name="isDisplay" value="0" title="否" checked>
+			</div>
+		</div>
+		</div>
+		<div class="layui-form-item" style="margin-top: 40px;">
+			<div class="layui-input-block">
+				<button type="submit" class="layui-btn" lay-submit="" lay-filter="btnSubmitUpdateMenu">提交</button>
+				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+			</div>
+		</div>
+	</form>
+
+	<script src="../layui/layui.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		layui.use(['form', 'jquery'], function () {
+			var form = layui.form
+			var $ = layui.jquery
+			// 请求下拉列表的数据
+			$.ajax({
+						url:'http://localhost:8080/menu/selectParent?parentId=0',
+						type:'get',
+						success:function(obj){
+							for(let i = 0;i < obj.data.length;i++){
+								let dom = $(`<option value="${obj.data[i].id}">${obj.data[i].name}</option>`)
+								$('#parentMenu').append(dom);
+								// 必须赋一个初始值，否则加载不出来
+								$('#parentMenu').val(parent.row.parent);
+							}
+							form.render()	
+						}
+
+					})
+			// 赋值
+			console.log(parent.row.parent)
+			form.val('updateMenu', {
+				"id": parent.row.id,
+				"name": parent.row.name,
+				"icon": parent.row.icon,
+				// 判断
+				"parent":parent.row.parent,
+				"isDisplay": parent.row.isDisplay
+			})
+			// form.render('select')	
+			// 提交
+			form.on('submit(btnSubmitUpdateMenu)', function (data) {
+				// 验证
+				if (form.verify()) {
+					$.ajax({
+						url: 'http://localhost:8080/menu/update',
+						type: 'POST',
+						dataType: 'JSON',
+						data: data.field,
+						success: function (obj) {
+							let index = parent.layer.getFrameIndex(window.name);
+							parent.layer.close(index);
+							parent.layer.msg("更新成功", { time: 1000 });
+							parent.table.reload('tabMenu');
+						}
+
+					})
+					// 防止表单跳转
+					return false;
+				}
+
+			});
+
+
+
+		})
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../layui/css/layui.css" />
+</head>
+
+<body style="padding: 10px;">
+    <div id="wrape"></div>
+    <form class="layui-form" lay-filter='updateRole' style="width: 90%;">
+        <!-- 隐藏域 -->
+        <!-- <input type="hidden" name="id" /> -->
+		<div class="layui-form-item" style="margin-top: 100px;">
+			<div class="layui-input-block">
+				<button type="submit" class="layui-btn" lay-submit="" lay-filter="btnSubmitUpdateMenu">提交</button>
+				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+			</div>
+		</div>
+    </form>
+    <script src="../layui/layui.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+        var menus = null;
+        layui.use(['form', 'jquery', 'tree'], function () {
+            var form = layui.form
+            var $ = layui.jquery
+            var tree = layui.tree;
+
+            // 请求数据
+            $.ajax({
+                url:'http://localhost:8080/role/selectMenuNameById',
+                type:'get',
+                dataType:'JSON',
+                    data:{
+                        id:0,
+                    },
+                    success:function(obj){
+                         //渲染
+                        var inst1 = tree.render({
+                            elem: '#wrape', //绑定元素
+                            showCheckbox: true,  //显示复选框
+                            showLine: false,
+                            data: obj
+                        });
+
+                    }
+                })     
+            form.render()
+            // 赋值
+            // form.val('updateRole', {
+            //     "id": parent.row.id,
+            //     "roleName": parent.row.roleName,
+            //     "description": parent.row.description,
+            //     "isRun": parent.row.isRun
+            // })
+
+
+        })
+    </script>
+
+</body>
+
+</html>

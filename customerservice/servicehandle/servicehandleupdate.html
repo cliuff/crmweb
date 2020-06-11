@@ -10,17 +10,10 @@
 		  <input type="hidden" name="id"  />
 		  <input type="hidden" name="serviceStatus"  />
 		  <input type="hidden" name="allocator"  />
-		  <div class="layui-form-item">
-		     <label class="layui-form-label">处理人</label>
+		  <div class="layui-form-item layui-form-text">
+		     <label class="layui-form-label">处理方法</label>
 		     <div class="layui-input-block">
-		       <select name="handler" lay-verify="required">
-				  <option value="">请选择处理人</option>
-				  <option value="华北">华北</option>
-				  <option value="西北">西北</option>
-				  <option value="华中">华中</option>
-				  <option value="华南">华南</option>
-				  <option value="西南">西南</option>
-		  	   </select>
+		        <textarea name="handleMethod" lay-verify="required" autocomplete="off" placeholder="请输入处理方法" class="layui-textarea"></textarea>
 		     </div>
 		   </div>
 		   
@@ -44,10 +37,10 @@
 				"customerId":parent.row.customerId,
 				"serviceContent":parent.row.serviceContent,
 				"serviceType":parent.row.serviceType,
-				"serviceStatus":'已分配',
+				"serviceStatus":'已处理',
 				"builder":parent.row.builder,
 				"createTime":parent.row.createTime,
-				"allocator":'当前登录用户',
+				"allocator":parent.row.allocator,
 				"allocateTime":parent.row.allocateTime,
 				"handleMethod":parent.row.handleMethod,
 				"handler":parent.row.handler,
