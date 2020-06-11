@@ -20,7 +20,7 @@ layui.use(['table','jquery'], function(){
     ,height: 'full'
     ,url: 'http://localhost:8080/service/servicesByServiceStatus' //数据接口
 	,where:{
-		handler:'西北',//当前登录用户
+		handler:'2',//当前登录用户
 		serviceStatus:'已处理'
 	}
     ,page: true //开启分页
@@ -36,7 +36,6 @@ layui.use(['table','jquery'], function(){
       ,{field: 'serviceType', title: '服务类型', width:100, align:'center'}
 	  ,{title: '服务状态', align:'center',width:100,templet:function (item) {
 		 var tem = [];
-		 console.log(item)
 		 if (item.serviceStatus == "新创建") {
 			 tem.push('<a lay-event="lookRes" class="layui-btn layui-btn-danger layui-btn-xs">新创建</a>');
 		 }
@@ -132,7 +131,7 @@ layui.use(['table','jquery'], function(){
                   ($(window).height()-400)/2
                   ,($(window).width()-390)/2
                 ] 
-                ,content: 'customerservice/serviceallocate/servicefeedbackupdate.html'
+                ,content: 'customerservice/servicefeedback/servicefeedbackupdate.html'
                 // ,zIndex: layer.zIndex //重点1
                 // ,success: function(layero){
                 //   layer.setTop(layero); //重点2

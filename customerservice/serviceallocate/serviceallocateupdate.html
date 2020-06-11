@@ -13,14 +13,9 @@
 		  <div class="layui-form-item">
 		     <label class="layui-form-label">处理人</label>
 		     <div class="layui-input-block">
-		       <select name="handler" lay-verify="required">
-				  <option value="">请选择处理人</option>
-				  <option value="华北">华北</option>
-				  <option value="西北">西北</option>
-				  <option value="华中">华中</option>
-				  <option value="华南">华南</option>
-				  <option value="西南">西南</option>
-		  	   </select>
+		       <select id="handler" name="handler" lay-filter="required">
+		       					 <option value="">请选择处理人</option>
+		       </select>
 		     </div>
 		   </div>
 		   
@@ -38,6 +33,23 @@
 			var form = layui.form
 			var $ = layui.jquery
 			
+			$.ajax({
+					  url:'http://localhost:8080/service/getUserByRole',
+					  type:'POST',
+					  dataType:'JSON',
+					  contentType: "application/json; charset=utf-8",
+					  success: function (data) {
+						  $.each(data,function(index,item){
+						      //option 第一个参数是页面显示的值，第二个参数是传递到后台的值
+						 
+						      $('#handler').append(new Option(item.userName,item.id));//往下拉菜单里添加元素
+						  
+						      //设置value（这个值就可以是在更新的时候后台传递到前台的值）为1的值为默认选中
+						      $('#handler').val(1);
+						   })
+						  form.render('select')
+					  }
+			  }); 
 			form.render()
 			form.val('formUpdateServiceAllocate',{
 				"id":parent.row.id,
