@@ -36,7 +36,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">销售时间</label>
         <div class="layui-input-block">
-                <input type="text" class="layui-input" autocomplete="off" id="test5" placeholder="yyyy-MM-dd">
+                <input type="text" name="orderTime" class="layui-input" autocomplete="off" id="test5" placeholder="yyyy-MM-dd">
         </div>
     </div>
 
@@ -63,6 +63,7 @@
         })
 
         form.on('submit(btnSubmitUpdateSales)', function(data){
+            debugger
             if(form.verify()){
                 $.ajax({
                     url:'http://localhost:8080/sales/updateSales',
