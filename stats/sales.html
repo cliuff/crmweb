@@ -21,10 +21,10 @@
         const table = layui.table;
         const laydate = layui.laydate;
         const header = [[ //表头
-            {field: "index", title: "序号", type: "numbers", width: 80}
-            , {field: 'cusNo', title: '客户编号', width: 150}
+            {field: "index", title: "序号", align: "right", type: "numbers", sort: true, width: 80}
+            , {field: 'cusNo', title: '客户编号', align: "right", sort: true, width: 150}
             , {field: 'cusName', title: '客户名称'},
-            {field: "transactionAmount", title: "交易总额", width: 150, templet: function (item) {
+            {field: "transactionAmount", title: "交易总额", align: "right", sort: true, width: 150, templet: function (item) {
                 if (item.transactionAmount == null) return 0; else return item.transactionAmount;
                 }}
         ]];
@@ -36,7 +36,11 @@
             , method: "POST"
             , toolbar: '#stats_sales_toolbar'  //添加编辑工具栏按钮
             , limit: 10
-            , cols: header
+            , cols: header,
+            initSort: {
+                field: 'transactionAmount' //排序字段，对应 cols 设定的各字段名
+                ,type: 'desc' //排序方式  asc: 升序、desc: 降序、null: 默认排序
+            }
         });
         laydate.render({
             elem: '#stats_sales_year_range'

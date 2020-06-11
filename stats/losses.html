@@ -12,8 +12,8 @@
     layui.use(['table'], function () {
         const table = layui.table;
         const header = [[ //表头
-            {field: "index", title: "序号", type: "numbers", width: 80}
-            ,{field: 'cusNo', title: '客户编号', width:120}
+            {field: "index", title: "序号", align: "right", type: "numbers", sort: true, width: 80}
+            ,{field: 'cusNo', title: '客户编号', align: "right", sort: true, width:120}
             ,{field: 'cusName', title: '客户名称'}
             ,{field: 'cusRegion', title: '客户区域', width:90}
             ,{field: 'cusAddr', title: '客户地址', width:180}
@@ -30,7 +30,11 @@
             , method: "POST"
             , toolbar: '#stats_losses_toolbar'  //添加编辑工具栏按钮
             , limit: 10
-            , cols: header
+            , cols: header,
+            initSort: {
+                field: 'cusNo' //排序字段，对应 cols 设定的各字段名
+                ,type: 'asc' //排序方式  asc: 升序、desc: 降序、null: 默认排序
+            }
         });
         table.on('toolbar(stats_losses_table)', function (obj) {
             const checkStatus = table.checkStatus(obj.config.id);
