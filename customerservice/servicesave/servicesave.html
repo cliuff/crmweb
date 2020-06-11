@@ -95,18 +95,13 @@ layui.use(['table','jquery'], function(){
          layer.open({
                 type: 2 //此处以iframe举例
                 ,title: '查看服务'
-                ,area: ['600px', '600px']
-                ,shade: 0 //背景阴影0~1
+                // ,area: ['600px', '600px']
+                // ,shade: 0 //背景阴影0~1
                 ,maxmin: true  //最大，最小化按钮
-                ,offset: [ //为了演示，随机坐标
-                  ($(window).height()-300)
-                  ,($(window).width()-300)
-                ] 
-                ,content: 'customerservice/servicesave/servicesavediaplay.html'
-                // ,zIndex: layer.zIndex //重点1
-                // ,success: function(layero){
-                //   layer.setTop(layero); //重点2
-                // }
+                ,area: ['1000px', '600px']  
+                ,content: 'customerservice/servicesave/servicesavedisplay.html'
+               
+               	
               });
       break;
 	  case 'search':
