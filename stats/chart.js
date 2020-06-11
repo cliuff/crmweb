@@ -1,5 +1,5 @@
 
-function makeChart(elementId, columnCode, url) {
+function makeChart(elementId, columnCode, url, colors) {
     $.ajax({
         url: url,
         type:'POST',
@@ -7,19 +7,19 @@ function makeChart(elementId, columnCode, url) {
         data:{columnCode: columnCode},
         success: function(response) {
             const data = response.data[0]
-            loadChart($("#" + elementId)[0], data.title, data.columnName, data.rows)
+            loadChart($("#" + elementId)[0], data.title, data.columnName, data.rows, colors)
         }
     })
 }
-function loadChart(element, chartTitle, chartColumnName, chartRows) {
+function loadChart(element, chartTitle, chartColumnName, chartRows, colors) {
     // Load the Visualization API and the corechart package.
     google.charts.load('current', {'packages':['corechart']});
     // Set a callback to run when the Google Visualization API is loaded.
     google.charts.setOnLoadCallback(function () {
-        drawChart(element, chartTitle, chartColumnName, chartRows)
+        drawChart(element, chartTitle, chartColumnName, chartRows, colors)
     });
 }
-function drawChart(element, chartTitle, chartColumnName, chartRows) {
+function drawChart(element, chartTitle, chartColumnName, chartRows, colors) {
     // Create the data table.
     const data = new google.visualization.DataTable();
     data.addColumn('string', chartColumnName);
@@ -29,7 +29,8 @@ function drawChart(element, chartTitle, chartColumnName, chartRows) {
     const options = {
         'title': chartTitle,
         'width': 900,
-        'height': 480
+        'height': 480,
+        "colors": colors
     };
     // Instantiate and draw our chart, passing in some options.
     const chart = new google.visualization.PieChart(element);
