@@ -1,0 +1,77 @@
+<div>
+    <table id="stats-sales-table" lay-filter="stats-sales-table">
+    </table>
+</div>
+<script type="text/html" id="stats-sales-toolbar">
+    <input type="text" id="cusName" autocomplete="off" placeholder="请输入客户姓名查询" style="margin-left: 200px;">
+    <a class="layui-btn  layui-btn-xs" lay-event="search">搜索</a>
+    <div class="layui-form">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">年范围</label>
+                <div class="layui-input-inline">
+                    <input type="text" class="layui-input" id="stats-sales-year-range" placeholder=" - ">
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<script>
+    layui.use(['table', "laydate"], function () {
+        const table = layui.table;
+        const laydate = layui.laydate;
+        const header = [[ //表头
+            {checkbox: true},
+            {field: "index", title: "序号", type: "numbers", width: 80}
+            , {field: 'cusNo', title: '客户编号', width: 150}
+            , {field: 'cusName', title: '客户名称'},
+            {field: "transactionAmount", title: "交易总额", width: 150, templet: function (item) {
+                if (item.transactionAmount == null) return 0; else return item.transactionAmount;
+                }}
+        ]];
+        table.render({
+            elem: '#stats-sales-table'
+            , height: 'full-160'
+            , url: 'http://localhost:8080/stats/customers' //数据接口
+            , page: true //开启分页
+            , method: "POST"
+            , toolbar: '#stats-sales-toolbar'  //添加编辑工具栏按钮
+            , limit: 10
+            , cols: header
+        });
+        laydate.render({
+            elem: '#stats-sales-year-range'
+            ,type: 'year'
+            ,range: true
+            ,done: function(value, date1, date2){
+                $.ajax({
+                    url:'http://localhost:8080/stats/customers',
+                    type:'POST',
+                    dataType:'JSON',
+                    data:{
+                        date: [date1.year, date2.year]
+                    },
+                    success: function(obj) {
+                        layer.msg(obj.msg);
+                        table.reload('stats-sales-table')
+                    }
+                })
+            }
+        });
+        table.on('toolbar(stats-sales-table)', function (obj) {
+            const checkStatus = table.checkStatus(obj.config.id);
+            switch (obj.event) {
+                case 'search':
+                    table.reload('stats-sales-table', {
+                        where: {
+                            cusName: $("#cusName").val()
+                        },
+                        page: {
+                            curr: 1
+                        }
+                    })
+                    break;
+            }
+        });
+    });
+</script>

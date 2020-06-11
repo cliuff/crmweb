@@ -2,10 +2,27 @@
 	<table id="tabCustomer" lay-filter="tabCustomer">
 	</table>
 </div>
+<!--<div class="layui-row">
+	<div class="layui-col-md8">
+		&lt;!&ndash;你的内容 9/12&ndash;&gt;
+		<table id="tabCustomer" lay-filter="tabCustomer">
+		</table>
+
+	</div>
+	<div class="layui-col-md1">
+		&lt;!&ndash;你的内容 9/12&ndash;&gt;
+	</div>
+	<div class="layui-col-md3">
+		&lt;!&ndash;你的内容 3/12&ndash;&gt;
+		<table id="tabCustomer1" lay-filter="tabCustomer1">
+		</table>
+	</div>
+</div>-->
 <script type="text/html" id="barCustomer">
   <a class="layui-btn layui-btn-xs" lay-event="add">新增</a>
   <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
   <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+  <a class="layui-btn layui-btn-xs" lay-event="searchContact" crmurl="customer/contact/customercontact.html">显示联系人</a>
 	  <input type="text" id="cusName" autocomplete="off" placeholder="请输入客户姓名查询" style="margin-left: 200px;">
 	  <a class="layui-btn  layui-btn-xs" lay-event="search">搜索</a>
 </script>
@@ -19,31 +36,62 @@ layui.use(['table','jquery'], function(){
   //第一个实例
   table.render({
     elem: '#tabCustomer'
-    ,height: 'full-150'
+    ,height: 'full-250'
     ,url: 'http://localhost:8080/customer/customers' //数据接口
     ,page: true //开启分页
+	,method: "POST"
 	,toolbar:'#barCustomer'  //添加编辑工具栏按钮
 	,defaultToolbar:[] //去掉默认的工具栏按钮
 	,limits:[5,10,15,20]
 	,limit:5
     ,cols: [[ //表头
 		{checkbox:true}
-      ,{field: 'cusNo', title: '客户编号', width:100}
-      ,{field: 'cusName', title: '客户名称'}
-      ,{field: 'cusRegion', title: '客户区域', width:100}
-      ,{field: 'cusAddr', title: '客户地址', width:100} ,
-	  ,{field: 'cusUrl', title: '客户网站', width:100} ,
-	  ,{field: 'cusLevel', title: '客户等级', width:100} ,
-	  ,{field: 'cusCredit', title: '信用等级',templet:function(item){
+      ,{field: 'cusNo', title: '客户编号', width:150}
+      ,{field: 'cusName', title: '客户名称', width:150}
+      ,{field: 'cusRegion', title: '客户区域', width:150}
+      ,{field: 'cusAddr', title: '客户地址', width:170}
+	  ,{field: 'cusUrl', title: '客户网站', width:220}
+	  ,{field: 'cusLevel', title: '客户等级', width:180}
+	  ,{field:'cusSatisfied',title:'客户满意度',width:180}
+	  ,{field: 'cusCredit', title: '信用等级'/*,templet:function(item){
 		  if(item.cusCredit=='一级'){
 			  return '一等'
 		  }else{
 			  return item.cusCredit
 		  }
-	  }, width:100} 
+	  }*/}
     ]]
   });
-  
+
+	/*//第一个实例
+	table.render({
+		elem: '#tabCustomer1'
+		,height: 'full-250'
+		,url: 'http:' +
+            '//localhost:8080/customer/customers' //数据接口
+		,page: true //开启分页
+		,toolbar:'#barCustomer'  //添加编辑工具栏按钮
+		,defaultToolbar:[] //去掉默认的工具栏按钮
+		,limits:[5,10,15,20]
+		,limit:5
+		,cols: [[ //表头
+			{checkbox:true}
+			,{field: 'cusNo', title: '客户编号', width:150}
+			,{field: 'cusName', title: '客户名称', width:150}
+			,{field: 'cusRegion', title: '客户区域', width:150}
+			,{field: 'cusAddr', title: '客户地址', width:170}
+			,{field: 'cusUrl', title: '客户网站', width:220}
+			,{field: 'cusLevel', title: '客户等级', width:180}
+			,{field:'cusSatisfied',title:'客户满意度',width:180}
+			,{field: 'cusCredit', title: '信用等级'/!*,templet:function(item){
+		  if(item.cusCredit=='一级'){
+			  return '一等'
+		  }else{
+			  return item.cusCredit
+		  }
+	  }*!/}
+		]]
+	});*/
   //监听事件
   table.on('toolbar(tabCustomer)', function(obj){
     var checkStatus = table.checkStatus(obj.config.id);
@@ -52,7 +100,7 @@ layui.use(['table','jquery'], function(){
          layer.open({
         	          type: 2 //此处以iframe举例
         	          ,title: '新增客户信息'
-        	          ,area: ['400px', '500px']
+        	          ,area: ['400px', '540px']
         	          ,shade: 0.5//阴影（0-1之间的数）
         	          ,maxmin: true//最大、最小化按钮
         	          ,offset: [ //为了演示，随机坐标
@@ -99,7 +147,7 @@ layui.use(['table','jquery'], function(){
          layer.open({
                 type: 2 //此处以iframe举例
                 ,title: '修改客户信息'
-                ,area: ['390px', '450px']
+                ,area: ['390px', '480px']
                 ,shade: 0.5 //背景阴影0~1
                 ,maxmin: true  //最大，最小化按钮
                 ,offset: [ //为了演示，随机坐标
@@ -123,6 +171,44 @@ layui.use(['table','jquery'], function(){
 			}
 		})
 	  break;
+		case 'searchContact':
+			if(checkStatus.data.length<=0){
+				layer.alert("请选择要显示联系人的行");
+				return;
+			}
+			row = checkStatus.data[0]
+
+            $.ajax({
+                url:'http://localhost:8080/contact/getContactByCusNo',
+                type:'POST',
+                dataType:'JSON',
+                data:{cusNo:row.cusNo},
+                success:function(obj){
+                /*    layer.msg("成功");
+                   /!* table.reload('tabContact')*!/
+                    //给菜单添加单击事件
+                    */
+                    layer.open({
+                        type: 2 //此处以iframe举例
+                        ,title: '客户联系人'
+                        ,area: ['1450px', '600px']
+                        ,shade: 0.5 //背景阴影0~1
+                        ,maxmin: true  //最大，最小化按钮
+                        ,offset: [ //为了演示，随机坐标
+                            ($(window).height()-600)/2
+                            ,($(window).width()-1250)/2
+                        ]
+                        ,content: 'customer/contact/customercontact.html'
+                        // ,zIndex: layer.zIndex //重点1
+                        // ,success: function(layero){
+                        //   layer.setTop(layero); //重点2
+                        // }
+                    });
+
+
+                }
+            })
+			break;
     };
   });
   

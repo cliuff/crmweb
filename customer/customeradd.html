@@ -6,17 +6,17 @@
 		<link rel="stylesheet" type="text/css" href="../layui/css/layui.css"/>
 	</head>
 	<body style="padding: 10px;">
-		<form class="layui-form" lay-filter='formAddCustomer' action="">
+		<form class="layui-form" lay-filter='formAddCustomer' action="" >
 		  <div class="layui-form-item">
 		    <label class="layui-form-label">客户编号</label>
 		    <div class="layui-input-block">
-		      <input type="text" name="cusNo" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
+		      <input type="text" name="cusNo" lay-verify="required" autocomplete="off" placeholder="请输入客户编号" class="layui-input">
 		    </div>
 		  </div>
 		  <div class="layui-form-item">
 		    <label class="layui-form-label">客户名称</label>
 		    <div class="layui-input-block">
-		      <input type="text" name="cusName" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
+		      <input type="text" name="cusName" lay-verify="required" autocomplete="off" placeholder="请输入客户名称" class="layui-input">
 		    </div>
 		  </div>
 		   <div class="layui-form-item">
@@ -35,13 +35,13 @@
 		  			<div class="layui-form-item">
 		  			  <label class="layui-form-label">客户地址</label>
 		  			  <div class="layui-input-block">
-		  			    <input type="text" name="cusAddr" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
+		  			    <input type="text" name="cusAddr" lay-verify="required" autocomplete="off" placeholder="请输入客户地址" class="layui-input">
 		  			  </div>
 		  			</div>
 		  			<div class="layui-form-item">
 		  			  <label class="layui-form-label">客户网址</label>
 		  			  <div class="layui-input-block">
-		  			    <input type="text" name="cusUrl" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
+		  			    <input type="text" name="cusUrl" lay-verify="required" autocomplete="off" placeholder="请输入客户网址" class="layui-input">
 		  			  </div>
 		  			</div>
 		  			<div class="layui-form-item">
@@ -50,12 +50,15 @@
 		  			      <select name="cusLevel" lay-verify="required">
 		  			        <option value=""></option>
 		  			        <option value="战略合作伙伴">战略合作伙伴</option>
+							  <option value="合作伙伴">合作伙伴</option>
 		  			        <option value="VIP客户">VIP客户</option>
+							  <option value="重点开发客户">重点开发客户</option>
 		  			        <option value="大客户">大客户</option>
 		  					<option value="普通客户">普通客户</option>
 		  			      </select>
 		  			    </div>
 		  			  </div>
+
 		  			  <div class="layui-form-item">
 		  			      <label class="layui-form-label">信用等级</label>
 		  			      <div class="layui-input-block">
@@ -69,7 +72,22 @@
 		  			        </select>
 		  			      </div>
 		  			    </div>
-		  			  <div class="layui-form-item">
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">客户满意度</label>
+				<div class="layui-input-block">
+					<select name="cusSatisfied" lay-verify="required">
+						<option value=""></option>
+						<option value="非常满意">非常满意</option>
+						<option value="较满意">较满意</option>
+						<option value="满意">满意</option>
+						<option value="较不满意">较不满意</option>
+						<option value="不满意">不满意</option>
+					</select>
+				</div>
+			</div>
+
+		  			  <div class="layui-form-item" style="margin-right: 3px ">
 		  			      <div class="layui-input-block">
 		  			        <button type="submit" class="layui-btn" lay-submit="" lay-filter="btnSubmitAddCustomer">立即提交</button>
 		  			        <button type="reset" class="layui-btn layui-btn-primary">重置</button>

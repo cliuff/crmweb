@@ -39,18 +39,21 @@
 			    <input type="text" name="cusUrl" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
 			  </div>
 			</div>
+
 			<div class="layui-form-item">
-			    <label class="layui-form-label">客户等级</label>
-			    <div class="layui-input-block">
-			      <select name="cusLevel" lay-verify="required">
-			        <option value=""></option>
-			        <option value="战略合作伙伴">战略合作伙伴</option>
-			        <option value="VIP客户">VIP客户</option>
-			        <option value="大客户">大客户</option>
-					<option value="普通客户">普通客户</option>
-			      </select>
-			    </div>
-			  </div>
+				<label class="layui-form-label">客户等级</label>
+				<div class="layui-input-block">
+					<select name="cusLevel" lay-verify="required">
+						<option value=""></option>
+						<option value="战略合作伙伴">战略合作伙伴</option>
+						<option value="合作伙伴">合作伙伴</option>
+						<option value="VIP客户">VIP客户</option>
+						<option value="重点开发客户">重点开发客户</option>
+						<option value="大客户">大客户</option>
+						<option value="普通客户">普通客户</option>
+					</select>
+				</div>
+			</div>
 			  <div class="layui-form-item">
 			      <label class="layui-form-label">信用等级</label>
 			      <div class="layui-input-block">
@@ -64,6 +67,20 @@
 			        </select>
 			      </div>
 			    </div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">客户满意度</label>
+				<div class="layui-input-block">
+					<select name="cusSatisfied" lay-verify="required">
+						<option value=""></option>
+						<option value="非常满意">非常满意</option>
+						<option value="较满意">较满意</option>
+						<option value="满意">满意</option>
+						<option value="较不满意">较不满意</option>
+						<option value="不满意">不满意</option>
+					</select>
+				</div>
+			</div>
 			  <div class="layui-form-item">
 			      <div class="layui-input-block">
 			        <button type="submit" class="layui-btn" lay-submit="" lay-filter="btnSubmitUpdateCustomer">立即提交</button>
@@ -86,6 +103,7 @@
 				"cusUrl":parent.row.cusUrl,
 				"cusLevel":parent.row.cusLevel,
 				"cusCredit":parent.row.cusCredit,
+				"cusSatisfied":parent.row.cusSatisfied
 			})
 			
 			form.on('submit(btnSubmitUpdateCustomer)', function(data){
