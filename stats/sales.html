@@ -1,8 +1,8 @@
 <div>
-    <table id="stats-sales-table" lay-filter="stats-sales-table">
+    <table id="stats_sales_table" lay-filter="stats_sales_table">
     </table>
 </div>
-<script type="text/html" id="stats-sales-toolbar">
+<script type="text/html" id="stats_sales_toolbar">
     <input type="text" id="cusName" autocomplete="off" placeholder="请输入客户姓名查询" style="margin-left: 200px;">
     <a class="layui-btn  layui-btn-xs" lay-event="search">搜索</a>
     <div class="layui-form">
@@ -10,7 +10,7 @@
             <div class="layui-inline">
                 <label class="layui-form-label">年范围</label>
                 <div class="layui-input-inline">
-                    <input type="text" class="layui-input" id="stats-sales-year-range" placeholder=" - ">
+                    <input type="text" class="layui-input" id="stats_sales_year_range" placeholder=" - ">
                 </div>
             </div>
         </div>
@@ -30,17 +30,17 @@
                 }}
         ]];
         table.render({
-            elem: '#stats-sales-table'
+            elem: '#stats_sales_table'
             , height: 'full-160'
             , url: 'http://localhost:8080/stats/customers' //数据接口
             , page: true //开启分页
             , method: "POST"
-            , toolbar: '#stats-sales-toolbar'  //添加编辑工具栏按钮
+            , toolbar: '#stats_sales_toolbar'  //添加编辑工具栏按钮
             , limit: 10
             , cols: header
         });
         laydate.render({
-            elem: '#stats-sales-year-range'
+            elem: '#stats_sales_year_range'
             ,type: 'year'
             ,range: true
             ,done: function(value, date1, date2){
@@ -53,16 +53,16 @@
                     },
                     success: function(obj) {
                         layer.msg(obj.msg);
-                        table.reload('stats-sales-table')
+                        table.reload('stats_sales_table')
                     }
                 })
             }
         });
-        table.on('toolbar(stats-sales-table)', function (obj) {
+        table.on('toolbar(stats_sales_table)', function (obj) {
             const checkStatus = table.checkStatus(obj.config.id);
             switch (obj.event) {
                 case 'search':
-                    table.reload('stats-sales-table', {
+                    table.reload('stats_sales_table', {
                         where: {
                             cusName: $("#cusName").val()
                         },
