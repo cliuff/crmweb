@@ -25,15 +25,7 @@
         <div class="layui-inline">
             <label class="layui-form-label">销售员编号</label>
             <div class="layui-input-block">
-                <select name="orderSalesmanNo" lay-verify="required">
-                    <option value="">请选择</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                </select>
+                <input type="text" name="orderSalesmanNo" lay-verify="required" autocomplete="off" placeholder="请输入销售员编号" class="layui-input">
             </div>
         </div>
         <div class="layui-inline">
@@ -46,7 +38,7 @@
         <div class="layui-inline">
             <label class="layui-form-label">销售时间</label>
             <div class="layui-input-inline">
-                <input type="text" class="layui-input" autocomplete="off" id="test5" placeholder="yyyy-MM-dd">
+                <input type="text" class="layui-input" autocomplete="off" id="test5" placeholder="年-月-日">
             </div>
         </div>
     </div>
@@ -70,6 +62,8 @@
         form.render()
         laydate.render({
             elem: '#test5'
+           /* ,type:'datetime'
+            ,range:'true'*/
         });
         form.on('submit(btnSubmitAddSales)', function(data){
             if(form.verify()){
