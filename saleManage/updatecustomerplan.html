@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../layui/css/layui.css"/>
+</head>
+
+<body style="padding: 10px;">
+
+<form class="layui-form" lay-filter='formUpdateCustomerPlan' action="">
+    <input type="hidden" name="cusPlanId"  />
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">计划编号</label>
+        <div class="layui-input-block">
+            <input type="text" name="cusPlanId" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">执行时间</label>
+        <div class="layui-input-block">
+            <input type="text" name="time" id="time" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">计划内容</label>
+        <div class="layui-input-block">
+            <textarea type="text" name="context" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-textarea"></textarea>
+        </div>
+    </div>
+
+
+    <div class="layui-form-item" style="margin-left:285px ;margin-top: 30px">
+        <div class="layui-input-block">
+            <button type="submit" class="layui-btn" lay-submit="" lay-filter="btnSubmitAddCustomerPlan">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+
+<script src="../layui/layui.js" type="text/javascript" charset="utf-8"></script>
+
+
+<script>
+    /*layui.use('laydate', function(){
+        var laydate = layui.laydate;
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#time' //指定元素
+        });
+    });*/
+</script>
+
+<script type="text/javascript">
+    layui.use(['form','jquery','laydate'],function(){
+        var form = layui.form
+        var $ = layui.jquery
+
+        var laydate = layui.laydate;
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#time' //指定元素
+        });
+        form.render()
+        form.on('submit(btnSubmitAddCustomerPlan)', function(data){
+            if(form.verify()){
+                $.ajax({
+                    url:'http://localhost:8080/customerPlan/updateCustomerPlan',
+                    type:'POST',
+                    dataType:'JSON',
+                    data:data.field,
+                    success:function(obj){
+                        debugger;
+                        var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                        parent.layer.close(index); //再执行关闭
+                        parent.table.reload('tabCustomerPlan');
+                        parent.myalert('修改成功啦');
+                    }
+                });
+                errors:function f() {
+                    parent.myalert('修改失败了')
+                }
+
+                return false;
+            }
+
+        });
+
+
+    })
+</script>
+</body>
+</html>
+
+
+
+<script type="text/javascript">
+    layui.use(['form','jquery'],function(){
+        var form = layui.form
+        var $ = layui.jquery
+        form.render()
+        form.val('formUpdateCustomerPlan',{
+            "cusPlanId":parent.data.cusPlanId,
+            "time":parent.data.time,
+            "context":parent.data.context,
+        })
+
+        $("#btnYes").click(function(){
+            var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+            parent.layer.close(index);
+        })
+    })
+</script>
+</body>
+</html>
