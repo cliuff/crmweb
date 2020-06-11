@@ -1,21 +1,20 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>layout 后台大布局 - Layui</title>
+  <title>TOP CRM 系统</title>
   <link rel="stylesheet" href="layui/css/layui.css">
-  <!--JQuery-->
-  <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-  <!--Google Charts-->
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <link rel="stylesheet" href="./style/common.css">
 </head>
+
 <body class="layui-layout-body">
-<div class="layui-layout layui-layout-admin">
-  <div class="layui-header">
-    <div class="layui-logo">TOP CRM 系统</div>
-    <!-- 头部区域（可配合layui已有的水平导航） -->
-    <!-- <ul class="layui-nav layui-layout-left">
+  <div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+      <div class="layui-logo">TOP CRM 系统</div>
+      <!-- 头部区域（可配合layui已有的水平导航） -->
+      <!-- <ul class="layui-nav layui-layout-left">
       <li class="layui-nav-item"><a href="">控制台</a></li>
       <li class="layui-nav-item"><a href="">商品管理</a></li>
       <li class="layui-nav-item"><a href="">用户</a></li>
@@ -28,90 +27,107 @@
         </dl>
       </li>
     </ul> -->
-    <ul class="layui-nav layui-layout-right">
-      <li class="layui-nav-item">
-        <a href="javascript:;">
-          <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
-
-          贤心
-        </a>
-        <dl class="layui-nav-child">
-          <dd><a href="">基本资料</a></dd>
-          <dd><a href="">安全设置</a></dd>
-        </dl>
-      </li>
-      <li class="layui-nav-item"><a href="">退出</a></li>
-    </ul>
-  </div>
-  
-  <div class="layui-side layui-bg-black">
-    <div class="layui-side-scroll">
-      <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-      <ul class="layui-nav layui-nav-tree"  lay-filter="test">
-        <li class="layui-nav-item layui-nav-itemed">
-          <a class="" href="javascript:;">客户管理</a>
-          <dl class="layui-nav-child">
-            <dd><a class="crm-menu" crmurl="customer/customerlist.html" href="javascript:;">客户信息</a></dd>
-            <dd><a class="crm-menu" crmurl="customer/customerrecord.html" href="javascript:;">客户交往记录</a></dd>
-            <dd><a class="crm-menu" crmurl="customer/customerflow.html" href="javascript:;">客户流失管理</a></dd>
-          </dl>
-        </li>
+      <ul class="layui-nav layui-layout-right">
         <li class="layui-nav-item">
-          <a href="javascript:;">营销管理</a>
-          <dl class="layui-nav-child">
-            <dd><a class="crm-menu" crmurl="saleManage/salechancelist.html" href="javascript:;">销售机会</a></dd>
-            <dd><a href="javascript:;">发展客户</a></dd>
-          </dl>
+          <a href="javascript:;">
+            <img src="images/profile_anonymous_v2.png" class="layui-nav-img">
+            管理员
+          </a>
         </li>
-		<li class="layui-nav-item layui-nav-itemed">
-		  <a class="" href="javascript:;">客户服务管理</a>
-		  <dl class="layui-nav-child">
-		    <dd><a class="crm-menu" crmurl="customerservice/servicelist.html" href="javascript:;">客户服务信息</a></dd>
-		    <dd><a class="crm-menu" crmurl="customerservice/serviceallocate.html" href="javascript:;">服务分配</a></dd>
-		    <dd><a class="crm-menu" crmurl="customerservice/servicefeedback.html" href="javascript:;">服务反馈</a></dd>
-			<dd><a class="crm-menu" crmurl="customerservice/servicesave.html" href="javascript:;">查看归档服务</a></dd>
-		  </dl>
-		</li>
-        <li class="layui-nav-item layui-nav-itemed"><a class="crm-menu" crmurl="customerservice/servicelist.html" href="javascript:;">客户服务</a></li>
-        <li class="layui-nav-item">
-          <a class="" href="javascript:;">统计报表</a>
-          <dl class="layui-nav-child">
-            <dd><a class="crm-menu" crmurl="stats/sales.html" href="javascript:;">销售统计</a></dd>
-            <dd><a class="crm-menu" crmurl="stats/customers.html" href="javascript:;">客户构成</a></dd>
-            <dd><a class="crm-menu" crmurl="stats/services.html" href="javascript:;">服务构成</a></dd>
-            <dd><a class="crm-menu" crmurl="stats/losses.html" href="javascript:;">流失记录</a></dd>
-          </dl>
-        </li>
+        <li class="layui-nav-item"><a href="login/index.html">退出</a></li>
       </ul>
     </div>
+
+    <div class="layui-side layui-bg-black">
+      <div class="layui-side-scroll">
+        <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+        <ul class="layui-nav layui-nav-tree" lay-filter="test">
+          <li class="layui-nav-item">
+            <a class="" href="javascript:;">客户管理</a>
+            <dl class="layui-nav-child">
+              <dd><a class="crm-menu" crmurl="customer/customerlist.html" href="javascript:;">客户信息</a></dd>
+              <dd><a class="crm-menu" crmurl="customer/customerrecord.html" href="javascript:;">客户交往记录</a></dd>
+              <dd><a class="crm-menu" crmurl="customer/customerflow.html" href="javascript:;">客户流失管理</a></dd>
+            </dl>
+          </li>
+          <li class="layui-nav-item">
+            <a href="javascript:;">营销管理</a>
+            <dl class="layui-nav-child">
+              <dd><a class="crm-menu" crmurl="saleManage/salechancelist.html" href="javascript:;">销售机会</a></dd>
+              <dd><a class="crm-menu" crmurl="saleManage/customerplanlist.html" href="javascript:;">开发计划</a></dd>
+            </dl>
+          </li>
+          <li class="layui-nav-item">
+            <a class="" href="javascript:;">客户服务管理</a>
+            <dl class="layui-nav-child">
+              <dd><a class="crm-menu" crmurl="customerservice/servicelist.html" href="javascript:;">客户服务信息</a></dd>
+              <dd><a class="crm-menu" crmurl="customerservice/serviceallocate/serviceallocate.html"
+                  href="javascript:;">服务分配</a></dd>
+              <dd><a class="crm-menu" crmurl="customerservice/servicehandle/servicehandle.html"
+                  href="javascript:;">服务处理</a></dd>
+              <dd><a class="crm-menu" crmurl="customerservice/servicefeedback/servicefeedback.html"
+                  href="javascript:;">服务反馈</a></dd>
+              <dd><a class="crm-menu" crmurl="customerservice/servicesave/servicesave.html"
+                  href="javascript:;">查看归档服务</a></dd>
+            </dl>
+          </li>
+          <li class="layui-nav-item">
+            <a class="crm-menu" crmurl="sales/saleslist.html" href="javascript:;">订单管理</a>
+          </li>
+          <li class="layui-nav-item">
+            <a class="" href="javascript:;">统计报表</a>
+            <dl class="layui-nav-child">
+              <dd><a class="crm-menu" crmurl="stats/sales.html" href="javascript:;">销售统计</a></dd>
+              <dd><a class="crm-menu" crmurl="stats/customers.html" href="javascript:;">客户构成</a></dd>
+              <dd><a class="crm-menu" crmurl="stats/services.html" href="javascript:;">服务构成</a></dd>
+              <dd><a class="crm-menu" crmurl="stats/losses.html" href="javascript:;">流失记录</a></dd>
+            </dl>
+          </li>
+          <li class="layui-nav-item">
+            <a class="" href="javascript:;">系统管理</a>
+            <dl class="layui-nav-child">
+              <dd><a class="crm-menu" crmurl="/user/userlist.html" href="javascript:;">用户列表</a></dd>
+              <dd><a class="crm-menu" crmurl="/role/rolelist.html" href="javascript:;">角色列表</a></dd>
+              <dd><a class="crm-menu" crmurl="/menu//menulist.html" href="javascript:;">菜单列表</a></dd>
+              <dd><a class="crm-menu" crmurl="/permission/permissionlist.html" href="javascript:;">权限列表</a></dd>
+            </dl>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="layui-body">
+      <!-- 内容主体区域 -->
+      <div id="crm-content" style="padding: 15px;"></div>
+    </div>
+
+    <div class="layui-footer">
+      <!-- 底部固定区域 -->
+      © 2020 TOP 公司 版权所有
+    </div>
   </div>
-  
-  <div class="layui-body">
-    <!-- 内容主体区域 -->
-    <div id="crm-content" style="padding: 15px;">内容主体区域</div>
-  </div>
-  
-  <div class="layui-footer">
-    <!-- 底部固定区域 -->
-    © layui.com - 底部固定区域
-  </div>
-</div>
-<script src="layui/layui.js"></script>
-<script>
-//JavaScript代码区域
-layui.use(['element','jquery'], function(){
-  var element = layui.element;
-  var $ = layui.jquery
-  //给菜单添加单击事件
-  $('.crm-menu').click(function(){
-	  //jQuery的ajax异步请求，第一个参数是请求的页面；
-	  //第二个参数是提交数据；第三个参数是请求成功的回调函数
-	  $.get($(this).attr('crmurl'),null,function(obj){
-		  //把请求的页面填充到内容区域
-	  	 $('.layui-body').children(0).html(obj)
-	   })
-  })
-});
-</script>
+  <script src="layui/layui.js"></script>
+  <script>
+    //JavaScript代码区域
+    layui.use(['element', 'jquery'], function () {
+      var element = layui.element;
+      var $ = layui.jquery
+      //给菜单添加单击事件
+      $('.crm-menu').click(function () {
+        //jQuery的ajax异步请求，第一个参数是请求的页面；
+        //第二个参数是提交数据；第三个参数是请求成功的回调函数
+        $.get($(this).attr('crmurl'), null, function (obj) {
+          //把请求的页面填充到内容区域
+          $('.layui-body').children(0).html(obj)
+        })
+      })
+    });
+  </script>
+  <!--JQuery-->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <!--Google Charts-->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="./util/util.js"></script>
 </body>
+
 </html>
