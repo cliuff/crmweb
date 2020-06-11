@@ -6,7 +6,7 @@
     <a class="layui-btn layui-btn-xs" lay-event="add">新增</a>
     <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-    <input type="text" id="cusName" autocomplete="off" placeholder="请输入客户姓名查询" style="margin-left: 200px;">
+    <input type="text" id="orderNo" autocomplete="off" placeholder="请输入查询订单编号" style="margin-left: 200px;">
     <a class="layui-btn  layui-btn-xs" lay-event="search">搜索</a>
 </script>
 <script>
@@ -60,7 +60,7 @@
                         layer.alert("请选择要删除的订单信息");
                         return;
                     }
-                    layer.confirm('确认要删除选中的这条信息吗？', function(index){
+                    layer.confirm('确认要删除选中的这条订单信息吗？', function(index){
                         var ids = []
                         for(var i=0; i<checkStatus.data.length; i++){
                             ids.push(checkStatus.data[i].orderNo)
@@ -109,7 +109,7 @@
                 case 'search':
                     table.reload('tabSales',{
                         where:{
-                            cusName:$("#cusName").val()
+                            orderNo:$("#orderNo").val()
                         },
                         page:{
                             curr:1

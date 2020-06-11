@@ -11,25 +11,25 @@
     <div class="layui-form-item">
         <label class="layui-form-label">订单编号</label>
         <div class="layui-input-block">
-            <input type="text" name="orderNo" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
+            <input type="text" name="orderNo" lay-verify="required" autocomplete="off" placeholder="请输入订单编号" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">客户编号</label>
         <div class="layui-input-block">
-            <input type="text" name="orderCustomerNo" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
+            <input type="text" name="orderCustomerNo" lay-verify="required" autocomplete="off" placeholder="请输入客户编号" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">销售员编号</label>
         <div class="layui-input-block">
-            <input type="text" name="orderSalesmanNo" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
+            <input type="text" name="orderSalesmanNo" lay-verify="required" autocomplete="off" placeholder="请输入销售员编号" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">订单价格</label>
         <div class="layui-input-block">
-            <input type="text" name="orderAmount" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
+            <input type="text" name="orderAmount" lay-verify="required" autocomplete="off" placeholder="请输入订单金额" class="layui-input">
         </div>
     </div>
 
@@ -65,7 +65,7 @@
         form.on('submit(btnSubmitUpdateSales)', function(data){
             if(form.verify()){
                 $.ajax({
-                    url:'http://localhost:8080/Sales/updateSales',
+                    url:'http://localhost:8080/sales/updateSales',
                     type:'POST',
                     dataType:'JSON',
                     data:data.field,
