@@ -35,7 +35,6 @@ layui.use(['table','jquery'], function(){
       ,{field: 'serviceType', title: '服务类型', width:100, align:'center'}
 	  ,{title: '服务状态', align:'center',width:100,templet:function (item) {
 		 var tem = [];
-		 console.log(item)
 		 if (item.serviceStatus == "新创建") {
 			 tem.push('<a lay-event="lookRes" class="layui-btn layui-btn-danger layui-btn-xs">新创建</a>');
 		 }
