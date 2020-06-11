@@ -5,88 +5,109 @@
 	<title></title>
 	<link rel="stylesheet" type="text/css" href="../layui/css/layui.css"/>
 </head>
+
 <body style="padding: 10px;">
-<form class="layui-form" lay-filter='formUpdateCustomer' action="">
+
+<form class="layui-form" lay-filter='formDetaileSaleChance' action="">
 	<input type="hidden" name="cusNo"  />
+
 	<div class="layui-form-item">
-		<label class="layui-form-label">客户名称</label>
-		<div class="layui-input-block">
-			<input type="text" name="cusName" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
+		<div class="layui-inline">
+			<label class="layui-form-label">机会编号</label>
+			<div class="layui-input-inline" style="margin-left: -4px">
+				<input type="text" readonly="readonly"  name="saleChanceId" lay-verify="required" autocomplete="off"  class="layui-input">
+			</div>
+		</div>
+
+		<div class="layui-inline">
+			<label class="layui-form-label">状态为</label>
+			<div class="layui-input-inline" style="width:310px;margin-left: -4px">
+				<input type="text" readonly="readonly"  name="saleChanceState" lay-verify="required" autocomplete="off"  class="layui-input">
+			</div>
 		</div>
 	</div>
-	<div class="layui-form-item">
-		<label class="layui-form-label">客户区域</label>
-		<div class="layui-input-block">
-			<select name="cusRegion" lay-verify="required">
-				<option value="">请选择</option>
-				<option value="华北">华北</option>
-				<option value="西北">西北</option>
-				<option value="华中">华中</option>
-				<option value="华南">华南</option>
-				<option value="西南">西南</option>
-			</select>
+
+		<div class="layui-form-item">
+			<div class="layui-inline">
+			<label class="layui-form-label">客户名称</label>
+			<div class="layui-input-inline" style="margin-left: -4px">
+				<input type="text" readonly="readonly"  name="cusName" lay-verify="required" autocomplete="off"  class="layui-input">
+			</div>
+			</div>
+
+			<div class="layui-inline">
+			<label class="layui-form-label">机会来源</label>
+			<div class="layui-input-inline" style="width:310px;margin-left: -4px">
+				<input type="text" readonly="readonly"  name="saleSource" lay-verify="required" autocomplete="off"  class="layui-input">
+			</div>
+			</div>
 		</div>
-	</div>
+
 	<div class="layui-form-item">
-		<label class="layui-form-label">客户地址</label>
-		<div class="layui-input-block">
-			<input type="text" name="cusAddr" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
+		<div class="layui-inline">
+			<label class="layui-form-label">联系人</label>
+			<div class="layui-input-inline" style="margin-left: -4px">
+				<input type="text" readonly="ctName"  name="ctName" lay-verify="required" autocomplete="off"  class="layui-input">
+			</div>
 		</div>
-	</div>
-	<div class="layui-form-item">
-		<label class="layui-form-label">客户网址</label>
-		<div class="layui-input-block">
-			<input type="text" name="cusUrl" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
+
+		<div class="layui-inline">
+			<label class="layui-form-label">联系电话</label>
+			<div class="layui-input-inline" style="width: 310px;margin-left: -4px;">
+				<input type="text" readonly="readonly"  name="ctPhone" lay-verify="required" autocomplete="off"  class="layui-input">
+			</div>
 		</div>
 	</div>
 
 	<div class="layui-form-item">
-		<label class="layui-form-label">客户等级</label>
-		<div class="layui-input-block">
-			<select name="cusLevel" lay-verify="required">
-				<option value=""></option>
-				<option value="战略合作伙伴">战略合作伙伴</option>
-				<option value="合作伙伴">合作伙伴</option>
-				<option value="VIP客户">VIP客户</option>
-				<option value="重点开发客户">重点开发客户</option>
-				<option value="大客户">大客户</option>
-				<option value="普通客户">普通客户</option>
-			</select>
+		<div class="layui-inline">
+			<label class="layui-form-label">成功几率</label>
+			<div class="layui-input-inline" style="margin-left: -4px">
+				<input type="text" readonly="readonly"  name="success" lay-verify="required" autocomplete="off"  class="layui-input">
+			</div>
 		</div>
-	</div>
-	<div class="layui-form-item">
-		<label class="layui-form-label">信用等级</label>
-		<div class="layui-input-block">
-			<select name="cusCredit" lay-verify="required">
-				<option value=""></option>
-				<option value="一级">一级</option>
-				<option value="二级">二级</option>
-				<option value="三级">三级</option>
-				<option value="四级">四级</option>
-				<option value="五级">五级</option>
-			</select>
+			<div class="layui-inline">
+			<label class="layui-form-label">概要</label>
+			<div class="layui-input-inline" style="margin-left: -4px;width:310px">
+				<input type="text" readonly="readonly"  name="profile" lay-verify="required" autocomplete="off"  class="layui-input">
+			</div>
 		</div>
 	</div>
 
 	<div class="layui-form-item">
-		<label class="layui-form-label">客户满意度</label>
-		<div class="layui-input-block">
-			<select name="cusSatisfied" lay-verify="required">
-				<option value=""></option>
-				<option value="非常满意">非常满意</option>
-				<option value="较满意">较满意</option>
-				<option value="满意">满意</option>
-				<option value="较不满意">较不满意</option>
-				<option value="不满意">不满意</option>
-			</select>
+		<div class="layui-inline">
+			<label class="layui-form-label">机会描述</label>
+			<div class="layui-input-inline" style="margin-left: -4px;width: 630px">
+				<textarea type="text" readonly="readonly"  name="descript" lay-verify="required" autocomplete="off"  class="layui-textarea"></textarea>
+			</div>
 		</div>
 	</div>
+
+	<div class="layui-form-item">
+		<div class="layui-inline">
+			<label class="layui-form-label">创建人</label>
+			<div class="layui-input-inline" style="margin-left: -4px">
+				<input type="text" readonly="readonly"  name="createPerson" lay-verify="required" autocomplete="off"  class="layui-input">
+			</div>
+		</div>
+
+		<div class="layui-inline">
+			<label class="layui-form-label">创建时间</label>
+			<div class="layui-input-inline" style="margin-left: -4px;width:310px">
+				<input type="text" readonly="readonly"  name="createTime" lay-verify="required" autocomplete="off"  class="layui-input">
+			</div>
+		</div>
+	</div>
+
+
+
+
 	<div class="layui-form-item">
 		<div class="layui-input-block">
-			<button type="submit" class="layui-btn" lay-submit="" lay-filter="btnSubmitUpdateCustomer">立即提交</button>
-			<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+			<button type="button" id="btnYes" class="layui-btn">确定</button>
 		</div>
 	</div>
+
 </form>
 
 <script src="../layui/layui.js" type="text/javascript" charset="utf-8"></script>
@@ -95,7 +116,7 @@
 		var form = layui.form
 		var $ = layui.jquery
 		form.render()
-		form.val('formUpdateSaleChance',{
+		form.val('formDetaileSaleChance',{
 			"saleChanceId":parent.data.saleChanceId,
 			"cusName":parent.data.cusName,
 			"saleSource":parent.data.saleSource,
@@ -106,30 +127,14 @@
 			"descript":parent.data.descript,
 			"createPerson":parent.data.createPerson,
 			"createTime":parent.data.createTime,
-			"assign":parent.data.assign,
-			"assignTime":parent.data.assignTime,
+			"saleChanceState":parent.data.saleChanceState,
+
 		})
 
-		form.on('submit(btnSubmitUpdateCustomer)', function(data){
-			if(form.verify()){
-				$.ajax({
-					url:'http://localhost:8080/customer/updateCustomer',
-					type:'POST',
-					dataType:'JSON',
-					data:data.field,
-					success:function(obj){
-						var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-						parent.layer.close(index); //再执行关闭
-						parent.table.reload('tabCustomer');
-					}
-				})
-				return false;
-			}
-
-		});
-
-
-
+		$("#btnYes").click(function(){
+			var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+			parent.layer.close(index);
+		})
 	})
 </script>
 </body>
