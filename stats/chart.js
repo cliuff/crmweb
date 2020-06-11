@@ -28,8 +28,8 @@ function drawChart(element, chartTitle, chartColumnName, chartRows) {
     // Set chart options
     const options = {
         'title': chartTitle,
-        'width': 800,
-        'height': 450
+        'width': 900,
+        'height': 480
     };
     // Instantiate and draw our chart, passing in some options.
     const chart = new google.visualization.PieChart(element);
