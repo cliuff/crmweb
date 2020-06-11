@@ -21,14 +21,14 @@
         //第一个实例
         table.render({
             elem: '#tabCusFlow'
-            ,height: 'full-250'
+            ,height: 'full-160'
             ,url: 'http://localhost:8080/cusflew/getCusFlews' //数据接口
             ,page: true //开启分页
             ,method: "POST"
             ,toolbar:'#barCusFlow'  //添加编辑工具栏按钮
             ,defaultToolbar:[] //去掉默认的工具栏按钮
             ,limits:[5,10,15,20]
-            ,limit:5
+            ,limit:10
             ,cols: [[ //表头
                 {checkbox:true}
                 ,{field: 'cfNo', title: '流失编号', width:200}

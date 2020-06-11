@@ -22,14 +22,14 @@ layui.use(['table','jquery'], function(){
   //第一个实例
   table.render({
     elem: '#tabCustomer'
-    ,height: 'full-250'
+    ,height: 'full-160'
     ,url: 'http://localhost:8080/customer/customers' //数据接口
     ,page: true //开启分页
 	,method: "POST"
 	,toolbar:'#barCustomer'  //添加编辑工具栏按钮
 	,defaultToolbar:[] //去掉默认的工具栏按钮
 	,limits:[5,10,15,20]
-	,limit:5
+	,limit:10
     ,cols: [[ //表头
 		{checkbox:true}
       ,{field: 'cusNo', title: '客户编号', width:120}

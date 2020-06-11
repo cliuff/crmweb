@@ -25,12 +25,13 @@
         <form class="layui-form" lay-filter='formContact' id="formContact" style="margin-left: 2px;width: 380px;">
            <!-- <input type="hidden" name="ctId"  />-->
             <div id="ctlabel"  hidden="hidden" style="text-align: center;margin-bottom: 5px">修改客户联系人</div>
-            <div class="layui-form-item" hidden="hidden" id="ctIdDiv">
+
+            <!--<div class="layui-form-item" hidden="hidden" id="ctIdDiv">
                 <label class="layui-form-label">联系人编号</label>
                 <div class="layui-input-block">
                     <input type="text" name="ctId" lay-verify="required" autocomplete="off" placeholder="请输入客户编号" class="layui-input">
                 </div>
-            </div>
+            </div>-->
             <div class="layui-form-item">
                 <label class="layui-form-label">联系人姓名</label>
                 <div class="layui-input-block">
@@ -102,8 +103,8 @@
             ,page: true //开启分页
             ,toolbar:'#barContact'  //添加编辑工具栏按钮
             ,defaultToolbar:[] //去掉默认的工具栏按钮
-            ,limits:[5,10,15,20]
-            ,limit:2
+            ,limits:[5,7,15,20]
+            ,limit:7
             ,cols: [[ //表头
                 {checkbox:true}
                  ,{field: 'ctId', title: '联系人编号', width:100}
@@ -123,7 +124,7 @@
             switch(obj.event){
                 case 'add':
                     document.getElementById('ctlabel').innerHTML= '添加联系人';
-                    document.getElementById('ctIdDiv').removeAttribute("hidden");
+                    /*document.getElementById('ctIdDiv').removeAttribute("hidden");*/
                     document.getElementById('ctlabel').removeAttribute("hidden");
                     document.getElementById('formDiv').style.visibility="visible";
                   /*  row = checkStatus.data[0]*/
