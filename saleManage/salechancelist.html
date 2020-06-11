@@ -1,14 +1,48 @@
+
+<style>
+    .layui-table-tool-temp{
+        padding-right: 0px;
+    }
+</style>
 <div>
     <table id="tabSaleChance" lay-filter="tabSaleChance">
     </table>
 </div>
 <script type="text/html" id="barSaleChance">
-    <a class="layui-btn layui-btn-xs" lay-event="add">新增</a>
-    <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
-    <a class="layui-btn layui-btn-xs" lay-event="assign">分配</a>
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-    <input type="text" id="cusName" autocomplete="off" placeholder="请输入客户姓名查询" style="margin-left: 200px;">
-    <a class="layui-btn  layui-btn-xs" lay-event="search">搜索</a>
+    <div class="layui-fluid">
+        <div class="layui-row">
+
+
+
+    <div class="layui-col-md8">
+        <a class="layui-btn layui-btn-xs" lay-event="add">新增</a>
+        <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
+        <a class="layui-btn layui-btn-xs" lay-event="assign">分配</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+        <input type="text" id="cusName" autocomplete="off" placeholder="请输入客户姓名查询" style="margin-left: 20px;">
+        <a class="layui-btn  layui-btn-xs" lay-event="search">搜索</a>
+    </div>
+
+    <div class="layui-col-md4" style="padding-left: 185px">
+            <label class="layui-form-label">分配给</label>
+   <!-- </div>
+
+        <div class="layui-col-md3" style="width: 150px">-->
+        <!--<form lay-filter="formSaleChance">-->
+                <div class="layui-input-inline" style="width: 140px;">
+                    <select name="saleChanceState" id="saleChanceState" lay-filter="saleChanceState" lay-verify="required" style="width:80px">
+                        <option value=""></option>
+                        <option value="未分配">未分配</option>
+                        <option value="已分配">已分配</option>
+                        <option value="开发成功">开发成功</option>
+                        <option value="开发失败">开发失败</option>
+                    </select>
+                </div>
+       <!-- </form>-->
+    </div>
+
+        </div>
+    </div>
 </script>
 
 
@@ -28,10 +62,11 @@
     var table = null
     var data =null
     var layer = null
-    layui.use(['table','jquery'], function(){
+    layui.use(['table','jquery','form'], function(){
         table = layui.table;
         var $ = layui.jquery;
         layer = layui.layer
+        var form=layui.form
 
         //第一个实例
         table.render({
@@ -84,8 +119,8 @@
                         ,shade: 0.5//阴影（0-1之间的数）
                         ,maxmin: true//最大、最小化按钮
                         ,offset: [ //为了演示，随机坐标
-                            ($(window).height()-500)/2
-                            ,($(window).width()-400)/2
+                            ($(window).height()-520)/2
+                            ,($(window).width()-600)/2
                         ]
                         ,content: 'saleManage/salechanceadd.html'
                     });
@@ -126,13 +161,13 @@
                     row = checkStatus.data[0]
                     layer.open({
                         type: 2 //此处以iframe举例
-                        ,title: '修改客户信息'
+                        ,title: '修改销售机会信息'
                         ,area: ['800px', '600px']
                         ,shade: 0.5 //背景阴影0~1
                         ,maxmin: true  //最大，最小化按钮
                         ,offset: [ //为了演示，随机坐标
-                            ($(window).height()-450)/2
-                            ,($(window).width()-390)/2
+                            ($(window).height()-520)/2
+                            ,($(window).width()-600)/2
                         ]
                         ,content: 'saleManage/salechanceupdate.html'
                         // ,zIndex: layer.zIndex //重点1
@@ -155,8 +190,8 @@
                         ,shade: 0.5 //背景阴影0~1
                         ,maxmin: true  //最大，最小化按钮
                         ,offset: [ //为了演示，随机坐标
-                            ($(window).height()-450)/2
-                            ,($(window).width()-390)/2
+                            ($(window).height()-520)/2
+                            ,($(window).width()-600)/2
                         ]
                         ,content: 'saleManage/salechanceassign.html'
                         // ,zIndex: layer.zIndex //重点1
@@ -169,7 +204,7 @@
 
 
                 case 'search':
-                    table.reload('tabCustomer',{
+                    table.reload('tabSaleChance',{
                         where:{
                             cusName:$("#cusName").val()
                         },
@@ -178,6 +213,7 @@
                         }
                     })
                     break;
+
             };
         });
 
@@ -191,8 +227,8 @@
                 ,shade: 0.5//阴影（0-1之间的数）
                 ,maxmin: true//最大、最小化按钮
                 ,offset: [ //为了演示，随机坐标/
-                    ($(window).height()-500)/2
-                    ,($(window).width()-400)/2
+                    ($(window).height()-520)/2
+                    ,($(window).width()-600)/2
                 ]
                 ,content: 'saleManage/saledetaile.html'
                 // ,yes:function () {
@@ -200,7 +236,16 @@
                 // }
             });
         });
-
+        form.on('select(saleChanceState)', function(data){
+            table.reload('tabSaleChance',{
+                where:{
+                    saleChanceState:data.value
+                },
+                page:{
+                    curr:1
+                }
+            })
+        })
 
     });
     function myalert(msg){
