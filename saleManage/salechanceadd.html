@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../layui/css/layui.css"/>
+</head>
+<body style="padding: 10px;">
+<form class="layui-form" lay-filter='formAddSaleChance' action="" >
+
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">机会编号</label>
+            <div class="layui-input-inline" style="margin-left: -4px">
+                <input type="text"  name="saleChanceId" lay-verify="required" autocomplete="off" placeholder="请输入销售机会编号"  class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">创建人</label>
+            <div class="layui-input-inline" style="margin-left: -4px;width: 310px">
+                <input type="text" name="createPerson" autocomplete="off" placeholder="请输入创建人的姓名" class="layui-input">
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">客户名称</label>
+            <div class="layui-input-inline" style="margin-left: -4px">
+                <input type="text"  name="cusName" lay-verify="required" autocomplete="off" placeholder="请输入客户名称"  class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">机会来源</label>
+            <div class="layui-input-inline" style="margin-left: -4px;width: 310px">
+                <input type="text" name="saleSource" autocomplete="off" placeholder="请输入销售机会的来源" class="layui-input">
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">联系人</label>
+            <div class="layui-input-inline" style="margin-left: -4px">
+                <input type="text"  name="ctName" lay-verify="required" autocomplete="off" placeholder="请输入联系人的姓名"  class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">联系电话</label>
+            <div class="layui-input-inline"style="margin-left: -4px;width: 310px">
+                <input type="text" name="ctPhone" autocomplete="off" placeholder="请输入联系人的电话" class="layui-input">
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">成功几率</label>
+            <div class="layui-input-inline" style="margin-left: -4px">
+                <input type="text"  name="success" lay-verify="required" autocomplete="off" placeholder="请输入你认为成功的几率"  class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">概要</label>
+            <div class="layui-input-inline" style="margin-left: -4px;width: 310px;">
+                <input type="text" name="profile" autocomplete="off" placeholder="请简要说明一下" class="layui-input">
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">机会描述</label>
+            <div class="layui-input-inline" style="margin-left: -4px;width: 630px">
+                <textarea type="text" name="descript" id="descript" lay-verify="required" autocomplete="off" placeholder="请详细说明销售机会" class="layui-textarea"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-form-item" style="margin-left:456px ">
+        <div class="layui-input-block">
+            <button type="submit" class="layui-btn" lay-submit="" lay-filter="btnSubmitAddSaleChance">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+
+<script src="../layui/layui.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    layui.use(['form','jquery'],function(){
+        var form = layui.form
+        var $ = layui.jquery
+        form.render()
+        form.on('submit(btnSubmitAddSaleChance)', function(data){
+            if(form.verify()){
+                $.ajax({
+                    url:'http://localhost:8080/saleChance/addSaleChance',
+                    type:'POST',
+                    dataType:'JSON',
+                    data:data.field,
+                    success:function(obj){
+                        debugger;
+                        var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                        parent.layer.close(index); //再执行关闭
+                        parent.table.reload('tabSaleChance');
+                        parent.myalert('新增成功啦');
+                    }
+                });
+                   errors:function f() {
+                        parent.myalert('新增失败了')
+                    }
+
+                return false;
+            }
+
+        });
+
+
+    })
+</script>
+</body>
+</html>

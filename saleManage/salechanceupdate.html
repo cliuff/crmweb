@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../layui/css/layui.css"/>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+
+<body style="padding: 10px;">
+
+<form class="layui-form" lay-filter='formUpdateSaleChance' action="">
+    <input type="hidden" name="cusNo"  />
+
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">机会编号</label>
+            <div class="layui-input-inline" style="margin-left: -4px">
+                <input type="text" readonly="readonly"  name="saleChanceId" lay-verify="required" autocomplete="off"  class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-inline">
+            <label class="layui-form-label">状态为</label>
+            <div class="layui-input-inline" style="width:310px;margin-left: -4px">
+                <input type="text" readonly="readonly"  name="saleChanceState" lay-verify="required" autocomplete="off"  class="layui-input">
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">客户名称</label>
+            <div class="layui-input-inline" style="margin-left: -4px">
+                <input type="text" name="cusName" id="cusName" lay-verify="required" autocomplete="off"  class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-inline">
+            <label class="layui-form-label">机会来源</label>
+            <div class="layui-input-inline" style="width:310px;margin-left: -4px">
+                <input type="text"  name="saleSource" id="saleSource" lay-verify="required" autocomplete="off"  class="layui-input">
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">联系人</label>
+            <div class="layui-input-inline" style="margin-left: -4px">
+                <input type="text" name="ctName" id="ctName" lay-verify="required" autocomplete="off"  class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-inline">
+            <label class="layui-form-label">联系电话</label>
+            <div class="layui-input-inline" style="width: 310px;margin-left: -4px;">
+                <input type="text"  name="ctPhone" id="ctPhone" lay-verify="required" autocomplete="off"  class="layui-input">
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">成功几率</label>
+            <div class="layui-input-inline" style="margin-left: -4px">
+                <input type="text" name="success" id="success" lay-verify="required" autocomplete="off"  class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">概要</label>
+            <div class="layui-input-inline" style="margin-left: -4px;width:310px">
+                <input type="text" name="profile" id="profile" lay-verify="required" autocomplete="off"  class="layui-input">
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">机会描述</label>
+            <div class="layui-input-inline" style="margin-left: -4px;width: 630px">
+                <textarea type="text" name="descript" id="descript" lay-verify="required" autocomplete="off"  class="layui-textarea"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">创建人</label>
+            <div class="layui-input-inline" style="margin-left: -4px">
+                <input type="text" readonly="readonly"  name="createPerson" lay-verify="required" autocomplete="off"  class="layui-input">
+            </div>
+        </div>
+
+
+
+        <div class="layui-inline">
+            <label class="layui-form-label">创建时间</label>
+            <div class="layui-input-inline" style="margin-left: -4px;width:310px">
+                <input type="text" readonly="readonly"  name="createTime" lay-verify="required" autocomplete="off"  class="layui-input">
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button type="submit" class="layui-btn" lay-submit="" lay-filter="btnSubmitUpdateSaleChance">立即提交</button>
+            <button type="button" id="btnreast" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+
+</form>
+
+<script src="../layui/layui.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    layui.use(['form','jquery','layer'],function(){
+        var form = layui.form
+        var $ = layui.jquery
+        var layer=layui.layer
+        form.render()
+        form.val('formUpdateSaleChance',{
+            "saleChanceId":parent.row.saleChanceId,
+            "cusName":parent.row.cusName,
+            "saleSource":parent.row.saleSource,
+            "ctName":parent.row.ctName,
+            "ctPhone":parent.row.ctPhone,
+            "success":parent.row.success,
+            "profile":parent.row.profile,
+            "descript":parent.row.descript,
+            "createPerson":parent.row.createPerson,
+            "createTime":parent.row.createTime,
+            "saleChanceState":parent.row.saleChanceState,
+        })
+
+        form.on('submit(btnSubmitUpdateSaleChance)', function(data){
+            if(form.verify()){
+                $.ajax({
+                    url:'http://localhost:8080/saleChance/updateSaleChance',
+                    type:'POST',
+                    dataType:'JSON',
+                    data:data.field,
+                    success:function(obj){
+                        var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                        parent.layer.close(index); //再执行关闭
+                        parent.table.reload('tabSaleChance');
+                       // layer.alert("chengong")
+                        parent.myalert('保存成功啦')
+                    }
+                });
+                errors:function f() {
+                    layer.alert("保存失败啦");
+                }
+                return false;
+            }
+
+        });
+
+        $("#btnreast").click(function(){
+            $("#cusName").val(''),
+            $("#saleSource").val(''),
+            $("#ctName").val(''),
+            $("#ctPhone").val(''),
+            $("#success").val(''),
+            $("#profile").val(''),
+            $("#descript").val('')
+
+        })
+
+
+
+    })
+</script>
+</body>
+</html>
