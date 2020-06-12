@@ -1,0 +1,34 @@
+
+<script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['月份', '今年', "去年"],
+            ['1',  80000,  70000],
+            ['2',  50000,  80000],
+            ['3',  90000,  85000],
+            ['4',  90000,  90000],
+            ['5',  100000,  90000],
+            ['6',  70000,  90000],
+            ['7',  null,  94000],
+            ['8',  null,  94000],
+            ['9',  null,  104000],
+            ['10',  null,  94000],
+            ['11',  null,  94000],
+            ['12',  null,  94000]
+        ]);
+
+        var options = {
+            title: '与去年同期业绩对比',
+            hAxis: {title: '月份',  titleTextStyle: {color: '#333'}},
+            vAxis: {minValue: 0}
+        };
+
+        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+    }
+</script>
+
+<div id="chart_div" style="width: 100%; min-height: 480px"></div>

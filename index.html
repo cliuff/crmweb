@@ -112,7 +112,8 @@
     //JavaScript代码区域
     layui.use(['element', 'jquery'], function () {
       var element = layui.element;
-      var $ = layui.jquery
+      var $ = layui.jquery;
+      $("#crm-content").load("stats/stats-f.html");
       //给菜单添加单击事件
       $('.crm-menu').click(function () {
         //jQuery的ajax异步请求，第一个参数是请求的页面；
