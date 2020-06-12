@@ -28,8 +28,6 @@ function drawChart(element, chartTitle, chartColumnName, chartRows, colors) {
     // Set chart options
     const options = {
         'title': chartTitle,
-        'width': 900,
-        'height': 480,
         "colors": colors
     };
     // Instantiate and draw our chart, passing in some options.
