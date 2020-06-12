@@ -6,25 +6,25 @@
 		<link rel="stylesheet" type="text/css" href="../layui/css/layui.css"/>
 	</head>
 	<body style="padding: 10px;">
-		<form class="layui-form" lay-filter='addUser' style="width: 90%; margin-top: 20px;">
+		<form class="layui-form" lay-filter='selectRole' style="width: 90%; margin-top: 20px;">
           <!-- <input type="hidden" name="id"/> -->
         <div class="layui-form-item">
             <label class="layui-form-label">角色:</label>
             <div class="layui-input-block">
-              <select name="role" lay-verify="required">
+              <select name="role" lay-verify="required" id="parentMenu">
                 <option value=""></option>
-                <option value="系统管理员">系统管理员</option>
-                <option value="销售主管">销售主管</option>
-                <option value="客户经理">客户经理</option>
-                <option value="高管">高管</option>
-                <option value="普通员工">普通员工</option>
+                <!-- <option value="1">系统管理员</option>
+                <option value="2">销售主管</option>
+                <option value="3">客户经理</option>
+                <option value="4">高管</option>
+                <option value="5">普通员工</option> -->
               </select>
             </div>
         </div>
 		<div class="layui-form-item">
 			<div class="layui-input-block" style="margin-top: 100px;">
                 <button class="layui-btn layui-btn-primary cancel">取消</button>
-			    <button type="submit" class="layui-btn" lay-submit="" lay-filter="btnSubmitAddUser">保存</button>
+			    <button type="submit" class="layui-btn" lay-submit="" lay-filter="btnSubmit">保存</button>
 			</div>
 		</div>
     </form>
@@ -34,8 +34,20 @@
 		layui.use(['form','jquery'],function(){
 			var form = layui.form
 			var $ = layui.jquery
-			form.render()
-            
+		
+            // 请求表单下拉列表数据
+            $.ajax({
+				url:'http://localhost:8080/role/search',
+				type:'get',
+				success:function(obj){
+					for(let i = 0;i < obj.data.length;i++){
+						let dom = $(`<option value="${obj.data[i].id}">${obj.data[i].roleName}</option>`)
+						$('#parentMenu').append(dom);
+					}
+					form.render()	
+				}
+
+			})
             // 取消
             $('.cancel').click(function(){
                 let index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
@@ -43,22 +55,21 @@
             })      
 			
             // 提交
-			form.on('submit(btnSubmitAddUser)', function(data){
-                // 验证
+			form.on('submit(btnSubmit)', function(data){
+                // 验证,修改角色
 			    if(form.verify()){
 					$.ajax({
-						url:'http://localhost:8080/user/add',
+						url:'http://localhost:8080/user/updateRoleByUserId',
 						type:'POST',
 						dataType:'JSON',
-						data:data.field,
-						success:function(obj){
-							let index = parent.layer.getFrameIndex(window.name); 
-							parent.layer.close(index); 
-                            parent.layer.msg("新增成功",{time:1000});
-							parent.table.reload('tabUser');
+						data:{
+							roleId:form.val("selectRole").role,
+							userId:parent.row.id
 						}
-
 					})
+					let index = parent.layer.getFrameIndex(window.name); 
+					parent.layer.close(index); 
+                    parent.layer.msg("分配成功",{time:1000});
                     // 防止表单跳转
 					return false;
 				}
