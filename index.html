@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>TOP CRM 系统</title>
+  <link rel="stylesheet" href="./layui/css/layui.css">
 </head>
 
 <body class="layui-layout-body">
@@ -109,6 +110,11 @@
   </div>
   <script src="layui/layui.js"></script>
   <script>
+     $.get('/home.html', null, function (obj) {
+          //把请求的页面填充到内容区域
+          $('.layui-body').children(0).html(obj)
+        })
+
     //JavaScript代码区域
     layui.use(['element', 'jquery'], function () {
       var element = layui.element;
