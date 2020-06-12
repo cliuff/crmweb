@@ -129,7 +129,7 @@
                             ($(window).height()-560)/2
                             ,($(window).width()-400)/2
                         ]
-                        ,content: 'saleManage/customerplanImp.html'
+                        ,content: ['saleManage/customerplanImp.html','no']
                         // ,zIndex: layer.zIndex //重点1
                         // ,success: function(layero){
                         //   layer.setTop(layero); //重点2
@@ -161,7 +161,7 @@
                                 ctPhone: row.ctPhone
                             },
                             success:function(obj){
-                                layer.msg(obj.msg);
+                                myalert(obj.msg);
                                 table.reload('tabCustomerPlan')
                             }
                         })
@@ -191,7 +191,7 @@
                                 saleChanceState:'开发失败'
                             },
                             success:function(obj){
-                                layer.msg(obj.msg);
+                                myalert(obj.msg);
                                 table.reload('tabCustomerPlan')
                             }
                         })
