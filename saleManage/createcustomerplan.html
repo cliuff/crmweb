@@ -181,6 +181,9 @@
             ,url: 'http://localhost:8080/customerPlan/CustomerPlans' //数据接口
             ,page: true //开启分页
             ,method: "POST"
+            ,where:{
+                saleChanceId: parent.row.saleChanceId
+            }
             ,toolbar:'#barCustomerPlan'  //添加编辑工具栏按钮
             ,defaultToolbar:[] //去掉默认的工具栏按钮
             ,limits:[5,10,15,20]
