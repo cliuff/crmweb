@@ -71,7 +71,7 @@
         //第一个实例
         table.render({
             elem: '#tabSaleChance'
-            ,height: 'full-250'
+            ,height: 'full-195'
             ,url: 'http://localhost:8080/saleChance/saleChances' //数据接口
             ,page: true //开启分页
             ,method: "POST"
@@ -81,7 +81,7 @@
             ,toolbar:'#barSaleChance'  //添加编辑工具栏按钮
             ,defaultToolbar:[] //去掉默认的工具栏按钮
             ,limits:[5,10,15,20]
-            ,limit:5
+            ,limit:10
             ,cols: [[ //表头
                 {checkbox:true}
                 ,{field: 'saleChanceId', title: '机会编号',align:'center',width: 90}
@@ -144,7 +144,7 @@
                                 ids:ids.join(",")
                             },
                             success:function(obj){
-                                layer.msg(obj.msg);
+                                myalert(obj.msg);
                                 table.reload('tabSaleChance')
                             }
                         })

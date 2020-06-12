@@ -4,8 +4,8 @@
 </div>
 <script type="text/html" id="stats_losses_toolbar">
     <div style="display: flex">
-        <input type="text" class="layui-input serch-input" id="cusName" autocomplete="off" placeholder="请输入客户姓名查询" style="margin-left: 100px;width:50%">
-        <a class="layui-btn  layui-btn-xs search-button" lay-event="search">搜索</a>
+        <input type="text" class="layui-input" id="cusName" autocomplete="off" placeholder="请输入客户姓名查询" style="width: 50%; height: 30px">
+        <a class="layui-btn  layui-btn-xs" lay-event="search" style="height: 30px; margin-left: 8px; padding: 4px 15px 0 15px">搜索</a>
     </div>
 </script>
 <script>
@@ -13,12 +13,12 @@
         const table = layui.table;
         const header = [[ //表头
             { field: "index", title: "序号", align: "right", type: "numbers", sort: true, width: 80 }
-            , { field: 'cusNo', title: '客户编号', align: "right", sort: true, width: 120 }
+            , { field: 'cusNo', title: '客户编号', align: "right", sort: true, width: 110 }
             , { field: 'cusName', title: '客户名称' }
             , { field: 'cusRegion', title: '客户区域', width: 90 }
             , { field: 'cusAddr', title: '客户地址', width: 180 }
             , { field: 'cusUrl', title: '客户网站', width: 180 }
-            , { field: 'cusLevel', title: '客户等级', width: 90 }
+            , { field: 'cusLevel', title: '客户等级', width: 120 }
             , { field: 'cusSatisfied', title: '客户满意度', width: 100 }
             , { field: 'cusCredit', title: '信用等级', width: 90 }
         ]];
